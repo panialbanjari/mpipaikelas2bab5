@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MPI PAI Kelas 2 - Bab 5: Asyiknya Belajar Kisah Nabi Nuh a.s.</title>
+
+  <!-- Google Fonts: Fredoka (Display) & Nunito (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tone.js untuk Efek Suara Edukatif Ramah Anak (Tanpa URL Eksternal) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            skysoft: '#F0F9FF',
+            ocean: '#0284C7',
+            oceandark: '#0369A1',
+            islamic: '#0D9488',
+            sunwarm: '#F59E0B',
+            ctaorange: '#EA580C',
+            wood: '#92400E',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-sky: #F0F9FF;
+      --surface: #FFFFFF;
+      --primary: #0284C7;
+      --primary-dark: #0369A1;
+      --secondary: #0D9488;
+      --accent-cta: #F59E0B;
+      --accent-cta-hover: #D97706;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --border-soft: #BAE6FD;
+      --base-font-size: 18px;
+      --touch-min: 48px;
+    }
+
+    /* Mode Papan Interaktif (FID / Smartboard) */
+    body.fid-mode {
+      --base-font-size: 22px;
+      --touch-min: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-sky);
+      color: var(--text-main);
+      font-family: 'Nunito', sans-serif;
+      font-size: var(--base-font-size);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Fredoka', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    /* Target Sentuh & Aksesibilitas */
+    .btn-touch {
+      min-height: var(--touch-min);
+      min-width: var(--touch-min);
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-touch:active {
+      transform: scale(0.96);
+    }
+
+    /* Pola Latar Gelombang & Awan Lembut */
+    .bg-pattern-ocean {
+      background-color: #E0F2FE;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.85) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.8) 0%, transparent 22%),
+        linear-gradient(180deg, #BAE6FD 0%, #F0F9FF 55%, #CCFBF1 100%);
+    }
+
+    /* Animasi Ringan Pedagogis */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(1deg); }
+    }
+
+    @keyframes bounceFeedback {
+      0%, 100% { transform: scale(1); }
+      40% { transform: scale(1.06); }
+      70% { transform: scale(0.98); }
+    }
+
+    @keyframes shakeFeedback {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-4px); }
+    }
+
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    .animate-success {
+      animation: bounceFeedback 0.45s ease;
+    }
+
+    .animate-error {
+      animation: shakeFeedback 0.4s ease;
+    }
+
+    /* Transisi Halaman */
+    .page-section {
+      display: none;
+      animation: fadeInPage 0.3s ease;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom Scrollbar Horizontal untuk Navigasi */
+    .nav-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .nav-scroll::-webkit-scrollbar-thumb {
+      background: #7DD3FC;
+      border-radius: 9999px;
+    }
+
+    /* Gaya Teka-Teki Silang */
+    .tts-cell {
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      border: 2px solid #0284C7;
+      border-radius: 10px;
+      background: #FFFFFF;
+      color: #0F172A;
+    }
+    body.fid-mode .tts-cell {
+      width: 56px;
+      height: 56px;
+      font-size: 1.5rem;
+    }
+    .tts-cell:focus {
+      outline: none;
+      border-color: #EA580C;
+      background-color: #FEF3C7;
+    }
+    .tts-cell.locked {
+      background-color: #E0F2FE;
+      color: #0369A1;
+    }
+    .tts-cell.correct {
+      background-color: #DCFCE7;
+      border-color: #16A34A;
+      color: #15803D;
+    }
+
+    /* Canvas Mini Game */
+    #arkCanvas {
+      touch-action: none;
+      border-radius: 1.25rem;
+      background: linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 65%, #0284C7 65%, #0369A1 100%);
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #FFFFFF !important; }
+    }
+  </style>
+</head>
+<body class="bg-pattern-ocean flex flex-col justify-between">
+
+  <!-- =====================================================================
+       HEADER & NAVIGASI UTAMA (KONSISTEN DI SEMUA HALAMAN)
+       ===================================================================== -->
+  <header id="mainHeader" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-4 border-sky-200 shadow-sm no-print">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5">
+      <!-- Baris Atas: Identitas, Bintang Skor, Audio & Mode FID -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center text-white font-display font-bold text-xl shadow">
+            ⛵
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full">
+              PAI & Budi Pekerti • Kelas 2 SD
+            </span>
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+              Bab 5: Kisah Nabi Nuh a.s.
+            </h1>
+          </div>
+        </div>
+
+        <!-- Kontrol Cepat: Poin, Suara, Mode FID -->
+        <div class="flex items-center gap-2">
+          <!-- Badge Poin Bintang -->
+          <div class="flex items-center gap-1.5 bg-amber-100 border-2 border-amber-300 px-3 py-1.5 rounded-2xl font-display font-bold text-amber-900 shadow-sm" title="Poin Bintang Belajar">
+            <span class="text-xl">⭐</span>
+            <span id="globalStars">0</span>
+          </div>
+
+          <!-- Tombol Efek Suara -->
+          <button id="btnToggleSound" onclick="toggleSound()" class="btn-touch px-3 py-1.5 rounded-2xl bg-teal-50 hover:bg-teal-100 border-2 border-teal-300 text-teal-800 font-bold text-sm flex items-center gap-1" aria-label="Suara Efek">
+            <span id="soundIcon">🔊</span>
+            <span class="hidden md:inline">Suara</span>
+          </button>
+
+          <!-- Tombol Mode Papan Interaktif (FID) -->
+          <button id="btnToggleFID" onclick="toggleFIDMode()" class="btn-touch px-3 py-1.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-300 text-indigo-800 font-bold text-sm flex items-center gap-1" title="Perbesar tombol & huruf untuk Papan Interaktif Kelas (FID)">
+            <span>🖥️</span>
+            <span id="fidLabel" class="hidden sm:inline">Mode FID: OFF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menu Navigasi 9 Halaman Utama -->
+      <nav aria-label="Menu Utama" class="nav-scroll flex items-center gap-1.5 overflow-x-auto pb-1">
+        <button onclick="navigateTo('beranda')" data-nav="beranda" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-600 text-white shadow">
+          <span>🏠</span> Beranda
+        </button>
+        <button onclick="navigateTo('materi')" data-nav="materi" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>📖</span> Materi
+        </button>
+        <button onclick="navigateTo('aktivitas')" data-nav="aktivitas" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>🎯</span> Aktivitas
+        </button>
+        <button onclick="navigateTo('game')" data-nav="game" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>🎮</span> Game
+        </button>
+        <button onclick="navigateTo('latihan')" data-nav="latihan" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>📝</span> Latihan
+        </button>
+        <button onclick="navigateTo('kuis')" data-nav="kuis" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>❓</span> Kuis
+        </button>
+        <button onclick="navigateTo('hasil')" data-nav="hasil" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>🏆</span> Hasil
+        </button>
+        <button onclick="navigateTo('refleksi')" data-nav="refleksi" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>💭</span> Refleksi
+        </button>
+        <button onclick="navigateTo('petunjuk')" data-nav="petunjuk" class="nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200">
+          <span>📋</span> Petunjuk
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       KONTEN UTAMA (10 BAGIAN PEMBELAJARAN)
+       ===================================================================== -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-3 sm:px-6 py-5 sm:py-8">
+
+    <!-- -------------------------------------------------------------------
+         1. HALAMAN PEMBUKA (COVER)
+         ------------------------------------------------------------------- -->
+    <section id="page-beranda" class="page-section active">
+      <div class="bg-white rounded-3xl border-4 border-sky-200 shadow-xl overflow-hidden">
+        <!-- Banner Dekoratif Atas -->
+        <div class="bg-gradient-to-r from-sky-600 via-sky-500 to-teal-500 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2 font-display font-semibold text-base sm:text-lg">
+            <span>🕌</span>
+            <span>Pendidikan Agama Islam dan Budi Pekerti</span>
+          </div>
+          <span class="bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full font-bold text-sm">
+            SD / Kelas 2 (Fase A) • 4 x 35 Menit
+          </span>
+        </div>
+
+        <!-- Grid Utama Cover (Focal Point Visual Storytelling) -->
+        <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Kolom Kiri: Judul, Identitas & Tombol MULAI -->
+          <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-900 border-2 border-amber-300 px-4 py-1.5 rounded-full font-display font-bold text-sm sm:text-base">
+              <span>✨</span>
+              <span>Media Pembelajaran Interaktif</span>
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 leading-tight">
+              Bab 5: Asyiknya Belajar Kisah <span class="text-sky-600">Nabi Nuh a.s.</span>
+            </h2>
+
+            <p class="text-slate-700 text-base sm:text-lg font-medium">
+              Mari bertualang bersama <strong>Kaka</strong> dan <strong>Kiki</strong> mengenal keteladanan sikap <strong>sabar</strong> dan <strong>kerja keras</strong> Nabi Nuh a.s. dengan cara yang seru dan menyenangkan!
+            </p>
+
+            <!-- Ringkasan Sub-materi -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left">
+              <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-3 flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-sky-600 text-white font-display font-bold flex items-center justify-center shrink-0">A</span>
+                <span class="font-bold text-slate-800 text-sm sm:text-base">Siapakah Nabi Nuh a.s.?</span>
+              </div>
+              <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-3 flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-teal-600 text-white font-display font-bold flex items-center justify-center shrink-0">B</span>
+                <span class="font-bold text-slate-800 text-sm sm:text-base">Dakwah Nabi Nuh a.s.</span>
+              </div>
+              <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-amber-600 text-white font-display font-bold flex items-center justify-center shrink-0">C</span>
+                <span class="font-bold text-slate-800 text-sm sm:text-base">Sabar & Kerja Keras</span>
+              </div>
+              <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-3 flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-orange-600 text-white font-display font-bold flex items-center justify-center shrink-0">D</span>
+                <span class="font-bold text-slate-800 text-sm sm:text-base">Meneladan Nabi Nuh a.s.</span>
+              </div>
+            </div>
+
+            <!-- Input Nama Murid (Opsional untuk Personalisasi) -->
+            <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <label for="studentNameInput" class="font-bold text-slate-800 whitespace-nowrap flex items-center gap-1.5">
+                <span>🧒</span> Namamu:
+              </label>
+              <input id="studentNameInput" type="text" placeholder="Ketik namamu di sini..." class="w-full px-4 py-2.5 rounded-xl border-2 border-sky-300 focus:border-sky-600 focus:outline-none font-bold text-slate-900 bg-white" onchange="saveStudentName(this.value)" />
+            </div>
+
+            <!-- Tombol CTA Utama: MULAI -->
+            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              <button onclick="startLearning()" class="btn-touch px-8 py-4 rounded-3xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-display font-bold text-xl sm:text-2xl shadow-lg shadow-orange-300/60 flex items-center gap-3">
+                <span>🚀</span>
+                <span>MULAI BELAJAR</span>
+              </button>
+
+              <button onclick="navigateTo('petunjuk')" class="btn-touch px-5 py-4 rounded-3xl bg-sky-100 hover:bg-sky-200 text-sky-900 font-display font-bold text-base sm:text-lg border-2 border-sky-300 flex items-center gap-2">
+                <span>📋</span>
+                <span>Cara Pakai</span>
+              </button>
+            </div>
+
+            <!-- Identitas Pembuat -->
+            <div class="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-slate-600 font-semibold">
+              <span>👨‍🏫 Pembuat Media: <strong class="text-slate-900">Abu Rahmi</strong></span>
+              <span>•</span>
+              <span>📚 Kurikulum Merdeka (Fase A)</span>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Ilustrasi SVG Focal Point (Bahtera & Maskot Kaka-Kiki) -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="relative w-full max-w-md bg-gradient-to-b from-sky-200 via-sky-100 to-teal-100 rounded-3xl p-5 border-4 border-sky-300 shadow-inner animate-float">
+              <!-- Ilustrasi SVG Flat Design Ceria: Bahtera Besar Nabi Nuh a.s. + Kaka & Kiki -->
+              <svg viewBox="0 0 400 340" class="w-full h-auto drop-shadow-md" role="img" aria-label="Ilustrasi Bahtera Nabi Nuh dan Maskot Belajar">
+                <!-- Matahari Hangat -->
+                <circle cx="330" cy="55" r="32" fill="#FBBF24" />
+                <circle cx="330" cy="55" r="24" fill="#FDE047" />
+                <!-- Awan Ceria -->
+                <g fill="#FFFFFF" opacity="0.9">
+                  <circle cx="70" cy="60" r="20" />
+                  <circle cx="92" cy="55" r="25" />
+                  <circle cx="115" cy="62" r="18" />
+                  <rect x="70" y="60" width="45" height="20" rx="10" />
+                </g>
+                <!-- Burung Merpati Damai -->
+                <path d="M170 65 Q180 55 190 65 Q200 55 210 65" fill="none" stroke="#0369A1" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M220 45 Q227 38 234 45 Q241 38 248 45" fill="none" stroke="#0369A1" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Kapal / Bahtera Kayu Besar -->
+                <!-- Kabin Atas Bahtera -->
+                <rect x="115" y="135" width="170" height="45" rx="10" fill="#B45309" stroke="#78350F" stroke-width="3"/>
+                <polygon points="105,138 200,102 295,138" fill="#D97706" stroke="#78350F" stroke-width="3"/>
+                <!-- Jendela Kabin -->
+                <circle cx="150" cy="157" r="9" fill="#FEF3C7" stroke="#78350F" stroke-width="2.5"/>
+                <circle cx="200" cy="157" r="9" fill="#FEF3C7" stroke="#78350F" stroke-width="2.5"/>
+                <circle cx="250" cy="157" r="9" fill="#FEF3C7" stroke="#78350F" stroke-width="2.5"/>
+
+                <!-- Lambung Bahtera -->
+                <path d="M55 178 L345 178 L305 255 L95 255 Z" fill="#92400E" stroke="#451A03" stroke-width="3.5" stroke-linejoin="round"/>
+                <!-- Garis Papan Kayu -->
+                <line x1="68" y1="203" x2="332" y2="203" stroke="#78350F" stroke-width="3"/>
+                <line x1="82" y1="228" x2="318" y2="228" stroke="#78350F" stroke-width="3"/>
+
+                <!-- Karakter Maskot Kaka (Kiri) -->
+                <g transform="translate(88, 122)">
+                  <!-- Badan -->
+                  <rect x="10" y="34" width="32" height="24" rx="8" fill="#0284C7"/>
+                  <!-- Kepala -->
+                  <circle cx="26" cy="22" r="16" fill="#FDBA74"/>
+                  <!-- Peci Hitam -->
+                  <path d="M12 15 Q26 6 40 15 L38 8 Q26 2 14 8 Z" fill="#1E293B"/>
+                  <!-- Mata & Senyum -->
+                  <circle cx="21" cy="21" r="2.2" fill="#0F172A"/>
+                  <circle cx="31" cy="21" r="2.2" fill="#0F172A"/>
+                  <path d="M21 27 Q26 32 31 27" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
+
+                <!-- Karakter Maskot Kiki (Kanan) -->
+                <g transform="translate(260, 122)">
+                  <!-- Hijab Kuning Ceria -->
+                  <path d="M8 24 Q8 4 26 4 Q44 4 44 24 L48 56 L4 56 Z" fill="#FACC15" stroke="#CA8A04" stroke-width="2"/>
+                  <!-- Wajah -->
+                  <circle cx="26" cy="23" r="14" fill="#FED7AA"/>
+                  <!-- Mata & Senyum -->
+                  <circle cx="21" cy="22" r="2.2" fill="#0F172A"/>
+                  <circle cx="31" cy="22" r="2.2" fill="#0F172A"/>
+                  <path d="M21 28 Q26 33 31 28" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
+
+                <!-- Gelombang Air Ramah di Bawah Bahtera -->
+                <path d="M10 255 Q45 240 80 255 T150 255 T220 255 T290 255 T360 255 L390 255 L390 325 L10 325 Z" fill="#0284C7"/>
+                <path d="M10 278 Q55 265 100 278 T190 278 T280 278 T390 278 L390 325 L10 325 Z" fill="#0EA5E9" opacity="0.8"/>
+                <path d="M35 300 Q70 292 105 300" fill="none" stroke="#E0F2FE" stroke-width="3" stroke-linecap="round"/>
+                <path d="M240 302 Q280 294 320 302" fill="none" stroke="#E0F2FE" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+
+              <!-- Balon Kata Maskot -->
+              <div class="mt-3 bg-white rounded-2xl p-3.5 border-2 border-sky-300 shadow-sm text-center">
+                <p class="font-display font-bold text-sky-900 text-base sm:text-lg">
+                  "Assalamu'alaikum! Yuk klik tombol <span class="text-orange-600">MULAI BELAJAR</span>!"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         2. MATERI INTI (APERSEPSI, VIDEO, LAGU & 4 SUB-MATERI CHUNKING)
+         ------------------------------------------------------------------- -->
+    <section id="page-materi" class="page-section space-y-6">
+      <!-- Maskot Pemandu & Audio Narasi -->
+      <div class="bg-white rounded-3xl border-4 border-sky-200 p-4 sm:p-6 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div id="materiMascot" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-4xl shrink-0">
+            🧒
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-full">
+              Pemandu Belajar: Kaka & Kiki
+            </span>
+            <p id="materiMascotSpeech" class="font-bold text-slate-800 mt-1">
+              Pilih kartu materi di bawah ini secara berurutan ya! Kamu juga bisa mendengarkan suaranya.
+            </p>
+          </div>
+        </div>
+        <button onclick="speakCurrentMateri()" class="btn-touch px-4 py-3 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-display font-bold flex items-center gap-2 shrink-0 shadow">
+          <span>🗣️</span>
+          <span>Bacakan Materi</span>
+        </button>
+      </div>
+
+      <!-- Tab Sub-Materi (Apersepsi + Video, A, B, C, D, Lagu & Rangkuman) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+        <button onclick="selectMateriTab(0)" data-mtab="0" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-sky-600 text-white shadow text-center">
+          🎬 1. Apersepsi & Video
+        </button>
+        <button onclick="selectMateriTab(1)" data-mtab="1" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center">
+          👤 A. Siapa Nabi Nuh?
+        </button>
+        <button onclick="selectMateriTab(2)" data-mtab="2" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center">
+          📢 B. Dakwah Beliau
+        </button>
+        <button onclick="selectMateriTab(3)" data-mtab="3" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center">
+          ⛵ C. Sabar & Kapal
+        </button>
+        <button onclick="selectMateriTab(4)" data-mtab="4" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center">
+          🌟 D. Meneladan
+        </button>
+        <button onclick="selectMateriTab(5)" data-mtab="5" class="mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center">
+          🎵 Lagu & Intisari
+        </button>
+      </div>
+
+      <!-- Kontainer Isi Materi Dinamis -->
+      <div id="materiContentCard" class="bg-white rounded-3xl border-4 border-sky-200 p-6 sm:p-8 shadow-lg">
+        <!-- Diisi otomatis oleh JavaScript -->
+      </div>
+
+      <!-- Navigasi Bawah Materi (Konsisten Back & Next) -->
+      <div class="flex items-center justify-between gap-4 pt-2">
+        <button id="btnPrevMateri" onclick="prevMateriTab()" class="btn-touch px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 border-2 border-slate-300 text-slate-800 font-display font-bold flex items-center gap-2 shadow-sm">
+          <span>⬅️</span>
+          <span>Sebelumnya</span>
+        </button>
+        <button id="btnNextMateri" onclick="nextMateriTab()" class="btn-touch px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-display font-bold flex items-center gap-2 shadow">
+          <span>Selanjutnya</span>
+          <span>➡️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         3. AKTIVITAS INTERAKTIF (DRAG/TAP ORDERING & MATCHING)
+         ------------------------------------------------------------------- -->
+    <section id="page-aktivitas" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-teal-200 p-6 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 flex items-center gap-2">
+            <span>🎯</span> Aktivitas Interaktif Siswa
+          </h2>
+          <span class="bg-teal-100 text-teal-900 px-3.5 py-1 rounded-full font-bold text-sm">
+            Tujuan Pembelajaran 3 & 4
+          </span>
+        </div>
+        <p class="text-slate-700">
+          Ayo berlatih menyusun urutan kartu kisah Nabi Nuh a.s. dan mencocokkan fakta pentingnya!
+        </p>
+      </div>
+
+      <!-- AKTIVITAS 1: MENYUSUN URUTAN KARTU KISAH NABI NUH A.S. -->
+      <div class="bg-white rounded-3xl border-4 border-sky-200 p-6 sm:p-8 shadow-lg space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase bg-sky-100 text-sky-800 px-3 py-1 rounded-full">Aktivitas 1 • Urutan Cerita</span>
+            <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900 mt-1">
+              Susun Urutan Kartu Kisah Nabi Nuh a.s. (1 sampai 6)
+            </h3>
+          </div>
+          <button onclick="resetStoryCards()" class="btn-touch px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm border border-slate-300">
+            🔄 Acak Ulang Kartu
+          </button>
+        </div>
+
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 text-amber-950 font-semibold text-sm sm:text-base">
+          💡 <strong>Petunjuk Mudah (Untuk Sentuh / Klik):</strong> Klik kartu cerita di kotak <em>"Kartu Acak"</em> untuk memindahkannya ke kotak <em>"Urutan Cerita"</em> dari nomor 1 sampai 6. Klik kartu di kotak urutan jika ingin mengembalikannya!
+        </div>
+
+        <!-- Area Slot Urutan 1 - 6 -->
+        <div>
+          <h4 class="font-display font-bold text-sky-900 mb-2">📌 Kotak Urutan Cerita (Nomor 1 → 6):</h4>
+          <div id="orderedCardsZone" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 min-h-[140px] p-4 rounded-2xl bg-sky-50 border-2 border-dashed border-sky-400">
+            <!-- Slot terisi dinamis -->
+          </div>
+        </div>
+
+        <!-- Area Kartu Acak -->
+        <div>
+          <h4 class="font-display font-bold text-slate-800 mb-2">🃏 Kartu Kisah Acak (Klik untuk memilih):</h4>
+          <div id="shuffledCardsZone" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <!-- Kartu acak dinamis -->
+          </div>
+        </div>
+
+        <!-- Tombol Periksa & Feedback -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <button onclick="checkStoryOrder()" class="btn-touch px-6 py-3.5 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-display font-bold text-lg shadow">
+            ✅ Periksa Urutan Kisah
+          </button>
+        </div>
+        <div id="storyOrderFeedback" class="hidden rounded-2xl p-4 font-bold"></div>
+      </div>
+
+      <!-- AKTIVITAS 2: MATCHING (MENJODOHKAN PASANGAN FAKTA NABI NUH A.S.) -->
+      <div class="bg-white rounded-3xl border-4 border-amber-200 p-6 sm:p-8 shadow-lg space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase bg-amber-100 text-amber-900 px-3 py-1 rounded-full">Aktivitas 2 • Pasangkan Kartu</span>
+            <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900 mt-1">
+              Jodohkan Pertanyaan & Jawaban Kisah Nabi Nuh a.s.
+            </h3>
+          </div>
+          <button onclick="initMatchingGame()" class="btn-touch px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm border border-slate-300">
+            🔄 Ulangi Pasangkan
+          </button>
+        </div>
+
+        <p class="text-slate-700 font-semibold text-sm sm:text-base">
+          👉 Klik satu kotak di <strong>Kolom Kiri</strong>, lalu klik pasangan yang tepat di <strong>Kolom Kanan</strong>!
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div id="matchLeftCol" class="space-y-3"></div>
+          <div id="matchRightCol" class="space-y-3"></div>
+        </div>
+
+        <div id="matchingFeedback" class="hidden rounded-2xl p-4 font-bold"></div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         4. GAME EDUKATIF (TTS BUKU PAKET & GAME BAHTERA KEBAIKAN)
+         ------------------------------------------------------------------- -->
+    <section id="page-game" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-orange-200 p-6 shadow-md flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 flex items-center gap-2">
+            <span>🎮</span> Zona Bermain Sambil Belajar
+          </h2>
+          <p class="text-slate-700 mt-1">Pilih permainan edukatif untuk mengasah ingatan dan ketangkasanmu!</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="switchGameTab('tts')" id="tabBtnTTS" class="btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-orange-600 text-white shadow">
+            🔤 Teka-Teki Silang
+          </button>
+          <button onclick="switchGameTab('ark')" id="tabBtnArk" class="btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-sky-100 text-sky-900 border-2 border-sky-300">
+            ⛵ Game Bahtera
+          </button>
+        </div>
+      </div>
+
+      <!-- GAME 1: TEKA-TEKI SILANG (SESUAI HALAMAN 138 BUKU PAKET) -->
+      <div id="gamePanelTTS" class="bg-white rounded-3xl border-4 border-sky-200 p-6 sm:p-8 shadow-lg space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">
+            🧩 Teka-Teki Silang: Kisah Nabi Nuh a.s.
+          </h3>
+          <button onclick="checkTTS()" class="btn-touch px-5 py-3 rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-display font-bold shadow">
+            ✅ Cek Jawaban TTS
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Grid TTS Interaktif -->
+          <div class="lg:col-span-7 overflow-x-auto bg-sky-50 p-4 rounded-2xl border-2 border-sky-200 flex justify-center">
+            <div id="ttsGridContainer" class="inline-grid gap-1.5" style="grid-template-columns: repeat(9, minmax(40px, 1fr));">
+              <!-- Diisi oleh JS -->
+            </div>
+          </div>
+
+          <!-- Petunjuk Mendatar & Menurun -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4">
+              <h4 class="font-display font-bold text-amber-900 text-lg mb-2">➡️ Mendatar:</h4>
+              <ul class="space-y-2 text-slate-800 font-semibold text-sm sm:text-base">
+                <li><strong>2.</strong> Perintah Allah Swt. kepada Nabi Nuh a.s. untuk membuat ... (5 huruf, awal K)</li>
+                <li><strong>4.</strong> Putra Nabi Nuh a.s. yang tidak mau beriman ... (5 huruf, awal K)</li>
+                <li><strong>6.</strong> Moyang Nabi Nuh a.s. yaitu Nabi ... (5 huruf, awal I)</li>
+              </ul>
+            </div>
+
+            <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-4">
+              <h4 class="font-display font-bold text-teal-900 text-lg mb-2">⬇️ Menurun:</h4>
+              <ul class="space-y-2 text-slate-800 font-semibold text-sm sm:text-base">
+                <li><strong>1.</strong> Azab Allah Swt. kepada kaum Nabi Nuh a.s. yang kafir ... (6 huruf, awal B)</li>
+                <li><strong>3.</strong> Nama ayah Nabi Nuh a.s. ... (5 huruf, awal L)</li>
+                <li><strong>5.</strong> Nabi dan rasul yang ketiga ... (3 huruf, awal N)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="ttsFeedback" class="hidden rounded-2xl p-4 font-bold"></div>
+      </div>
+
+      <!-- GAME 2: MINI GAME BAHTERA KEBAIKAN (CANVAS INTERAKTIF) -->
+      <div id="gamePanelArk" class="hidden bg-white rounded-3xl border-4 border-sky-200 p-6 sm:p-8 shadow-lg space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">
+              ⛵ Misi Bahtera Kebaikan Nabi Nuh a.s.
+            </h3>
+            <p class="text-slate-700 text-sm sm:text-base">
+              Gerakkan bahtera ke kiri & kanan untuk mengumpulkan <strong>Kayu (🪵)</strong> dan <strong>Pasangan Hewan (🐑 🐘 🕊️)</strong>. Hindari <strong>Batu Karang (🪨)</strong>!
+            </p>
+          </div>
+          <div class="flex items-center gap-3 font-display font-bold">
+            <span class="bg-amber-100 border-2 border-amber-300 text-amber-900 px-4 py-2 rounded-2xl">
+              Skor: <span id="arkScore">0</span>
+            </span>
+            <span class="bg-rose-100 border-2 border-rose-300 text-rose-900 px-4 py-2 rounded-2xl">
+              Nyawa: <span id="arkLives">❤️❤️❤️</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Canvas Responsif -->
+        <div class="relative w-full max-w-2xl mx-auto">
+          <canvas id="arkCanvas" class="w-full h-72 sm:h-80 border-4 border-sky-400 shadow-inner"></canvas>
+          <div id="arkOverlay" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center">
+            <span class="text-5xl mb-2">⛵</span>
+            <h4 id="arkOverlayTitle" class="text-2xl font-display font-bold mb-1">Siap Berlayar?</h4>
+            <p id="arkOverlayDesc" class="text-sm sm:text-base mb-4 max-w-md">
+              Gunakan tombol panah ⬅️ ➡️ di layar atau keyboard untuk menggerakkan bahtera!
+            </p>
+            <button onclick="startArkGame()" class="btn-touch px-7 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-bold text-lg shadow-lg">
+              ▶️ Mulai Misi Bahtera
+            </button>
+          </div>
+        </div>
+
+        <!-- Tombol Kontrol Sentuh Besar untuk FID & Mobile -->
+        <div class="flex items-center justify-center gap-6 pt-1">
+          <button onpointerdown="moveArk(-1)" onpointerup="stopArk()" onpointerleave="stopArk()" class="btn-touch w-24 h-16 rounded-2xl bg-sky-600 active:bg-sky-800 text-white font-display font-bold text-2xl shadow-md flex items-center justify-center">
+            ⬅️ Kiri
+          </button>
+          <button onpointerdown="moveArk(1)" onpointerup="stopArk()" onpointerleave="stopArk()" class="btn-touch w-24 h-16 rounded-2xl bg-sky-600 active:bg-sky-800 text-white font-display font-bold text-2xl shadow-md flex items-center justify-center">
+            Kanan ➡️
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         5. LATIHAN DENGAN FEEDBACK LANGSUNG (ASESMEN FOR LEARNING)
+         ------------------------------------------------------------------- -->
+    <section id="page-latihan" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-sky-200 p-6 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 flex items-center gap-2">
+            <span>📝</span> Latihan Mandiri (Umpan Balik Langsung)
+          </h2>
+          <span class="bg-sky-100 text-sky-900 px-3.5 py-1 rounded-full font-bold text-sm">
+            Bismillah, Aku Pasti Bisa!
+          </span>
+        </div>
+        <p class="text-slate-700 mt-1">
+          Jawablah pernyataan berikut dengan memilih <strong>Benar (✓)</strong> atau <strong>Salah (✗)</strong>. Jika keliru, baca petunjuknya dan coba lagi ya!
+        </p>
+      </div>
+
+      <div id="latihanContainer" class="space-y-4">
+        <!-- Diisi otomatis oleh JavaScript -->
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="navigateTo('kuis')" class="btn-touch px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-display font-bold text-lg shadow flex items-center gap-2">
+          <span>Lanjut ke Kuis Akhir</span>
+          <span>➡️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         6. KUIS AKHIR (10 SOAL PILIHAN GANDA ACAK + TIMER + PROGRESS BAR)
+         ------------------------------------------------------------------- -->
+    <section id="page-kuis" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-amber-300 p-6 sm:p-8 shadow-lg">
+        <!-- Header Kuis: Progress & Timer -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b-2 border-slate-100">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-3 py-1 rounded-full">
+              Evaluasi Akhir • 10 Soal Acak
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">
+              Kuis Keteladanan Nabi Nuh a.s.
+            </h2>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-sky-50 border-2 border-sky-200 px-4 py-2 rounded-2xl font-display font-bold text-sky-900 flex items-center gap-2">
+              <span>⏱️</span>
+              <span id="quizTimerDisplay">00:00</span>
+            </div>
+            <button onclick="startNewQuiz()" class="btn-touch px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm border border-slate-300" title="Acak Ulang Soal">
+              🔄 Ulang Kuis
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Bar Kuis -->
+        <div class="my-5">
+          <div class="flex justify-between text-sm font-bold text-slate-700 mb-1.5">
+            <span id="quizProgressText">Soal 1 dari 10</span>
+            <span id="quizScoreLive">Benar: 0</span>
+          </div>
+          <div class="w-full h-4 bg-slate-200 rounded-full overflow-hidden">
+            <div id="quizProgressBar" class="h-full bg-gradient-to-r from-sky-500 to-teal-500 transition-all duration-300" style="width: 10%;"></div>
+          </div>
+        </div>
+
+        <!-- Area Pertanyaan Kuis -->
+        <div id="quizQuestionArea" class="space-y-5">
+          <!-- Diisi oleh JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         7. HALAMAN HASIL BELAJAR & PENGHARGAAN
+         ------------------------------------------------------------------- -->
+    <section id="page-hasil" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-amber-300 p-6 sm:p-10 shadow-xl text-center space-y-6">
+        <div id="resultBadgeIcon" class="w-24 h-24 mx-auto rounded-full bg-amber-100 border-4 border-amber-400 flex items-center justify-center text-5xl shadow-md animate-float">
+          🏆
+        </div>
+
+        <div>
+          <span id="resultPredicateBadge" class="inline-block bg-teal-100 text-teal-900 border-2 border-teal-300 px-4 py-1 rounded-full font-display font-bold text-base mb-2">
+            Menunggu Hasil Kuis
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-slate-900">
+            Laporan Belajar <span id="resultStudentName" class="text-sky-600">Anak Saleh</span>
+          </h2>
+          <p id="resultMotivationMsg" class="text-slate-700 max-w-2xl mx-auto mt-2 font-medium">
+            Selesaikan Kuis Akhir untuk melihat nilai dan lencana pencapaianmu di sini!
+          </p>
+        </div>
+
+        <!-- Kartu Statistik Hasil -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4">
+            <p class="text-sm font-bold text-sky-800">Nilai Akhir</p>
+            <p id="resScoreValue" class="text-3xl sm:text-4xl font-display font-bold text-sky-700 mt-1">0</p>
+          </div>
+          <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-4">
+            <p class="text-sm font-bold text-emerald-800">Jawaban Benar</p>
+            <p id="resCorrectValue" class="text-3xl sm:text-4xl font-display font-bold text-emerald-700 mt-1">0 / 10</p>
+          </div>
+          <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-4">
+            <p class="text-sm font-bold text-rose-800">Jawaban Salah</p>
+            <p id="resWrongValue" class="text-3xl sm:text-4xl font-display font-bold text-rose-700 mt-1">0</p>
+          </div>
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4">
+            <p class="text-sm font-bold text-amber-800">Waktu Kuis</p>
+            <p id="resTimeValue" class="text-2xl sm:text-3xl font-display font-bold text-amber-700 mt-1">00:00</p>
+          </div>
+        </div>
+
+        <!-- Rekomendasi Belajar & Ringkasan Materi -->
+        <div id="resultRecommendationBox" class="max-w-3xl mx-auto bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 text-left space-y-2">
+          <h3 class="font-display font-bold text-slate-900 text-lg flex items-center gap-2">
+            <span>📌</span> Ringkasan Keteladanan Bab 5:
+          </h3>
+          <ul class="list-disc pl-6 text-slate-700 space-y-1 text-sm sm:text-base font-medium">
+            <li>Nabi Nuh a.s. adalah nabi dan rasul ke-3, cicit Nabi Idris a.s., dan putra dari Lamik.</li>
+            <li>Beliau berdakwah selama 950 tahun dengan penuh kesabaran walau dihina kaumnya.</li>
+            <li>Atas perintah Allah Swt., Nabi Nuh a.s. bekerja keras membuat kapal besar.</li>
+            <li>Allah Swt. menyelamatkan Nabi Nuh a.s. beserta pengikutnya yang beriman dan sepasang hewan dari banjir besar.</li>
+          </ul>
+        </div>
+
+        <!-- Tombol Aksi Hasil -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2 no-print">
+          <button onclick="startNewQuiz(); navigateTo('kuis');" class="btn-touch px-6 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-display font-bold shadow">
+            🔄 Ulangi Kuis
+          </button>
+          <button onclick="navigateTo('refleksi')" class="btn-touch px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-display font-bold shadow">
+            💭 Lanjut Isi Refleksi ➡️
+          </button>
+          <button onclick="window.print()" class="btn-touch px-5 py-3.5 rounded-2xl bg-teal-50 hover:bg-teal-100 border-2 border-teal-300 text-teal-900 font-display font-bold">
+            🖨️ Cetak Laporan
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         8. REFLEKSI PESERTA DIDIK & PENUTUP (ASESMEN AS LEARNING)
+         ------------------------------------------------------------------- -->
+    <section id="page-refleksi" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-teal-200 p-6 sm:p-8 shadow-lg space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-900 px-3 py-1 rounded-full">
+            Asesmen As Learning • Tekadku
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">
+            💭 Refleksi Diri: Aku Anak Saleh
+          </h2>
+          <p class="text-slate-700 mt-1">
+            Yuk jujur pada diri sendiri tentang sikap sabar dan kerja kerasmu sehari-hari!
+          </p>
+        </div>
+
+        <!-- Checklist Kebiasaan Sikap (Sesuai Halaman 133 Buku Paket) -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse rounded-2xl overflow-hidden">
+            <thead>
+              <tr class="bg-sky-600 text-white font-display">
+                <th class="p-3.5">Sikap Teladan Nabi Nuh a.s.</th>
+                <th class="p-3.5 text-center">🌟 Selalu</th>
+                <th class="p-3.5 text-center">🙂 Sering</th>
+                <th class="p-3.5 text-center">🌱 Belajar Lagi</th>
+              </tr>
+            </thead>
+            <tbody id="habitTableBody" class="divide-y divide-sky-100 bg-sky-50/40 font-semibold">
+              <!-- Diisi oleh JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pertanyaan Refleksi Perasaan & Pemahaman -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-5 space-y-3">
+            <h3 class="font-display font-bold text-amber-950 text-lg">
+              1. Bagaimana perasaanmu belajar kisah Nabi Nuh a.s.?
+            </h3>
+            <div class="flex flex-wrap gap-2.5" id="moodSelector">
+              <button onclick="selectMood('Sangat Senang 🤩')" class="mood-btn btn-touch px-4 py-2.5 rounded-2xl bg-white border-2 border-amber-300 font-bold text-slate-800">
+                🤩 Sangat Senang
+              </button>
+              <button onclick="selectMood('Semangat Belajar 😊')" class="mood-btn btn-touch px-4 py-2.5 rounded-2xl bg-white border-2 border-amber-300 font-bold text-slate-800">
+                😊 Semangat
+              </button>
+              <button onclick="selectMood('Ingin Tahu Lebih Banyak 🤔')" class="mood-btn btn-touch px-4 py-2.5 rounded-2xl bg-white border-2 border-amber-300 font-bold text-slate-800">
+                🤔 Ingin Tahu Lagi
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-5 space-y-3">
+            <h3 class="font-display font-bold text-sky-950 text-lg">
+              2. Bagian mana yang paling kamu sukai?
+            </h3>
+            <select id="favPartSelect" class="w-full p-3 rounded-xl border-2 border-sky-300 bg-white font-bold text-slate-800">
+              <option value="Kisah Nabi Nuh membuat kapal besar">⛵ Kisah Nabi Nuh membuat kapal besar</option>
+              <option value="Menyusun kartu cerita dan bermain TTS">🧩 Menyusun kartu cerita & bermain game</option>
+              <option value="Bernyanyi lagu Kisah Nabi Nuh">🎵 Bernyanyi lagu Kisah Nabi Nuh</option>
+              <option value="Meneladani sikap sabar & kerja keras">🌟 Meneladani sikap sabar & kerja keras</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 space-y-2">
+          <label for="reflectionNote" class="font-display font-bold text-slate-900 block">
+            3. Tuliskan tekad baikmu atau hal yang ingin kamu tanyakan kepada Guru:
+          </label>
+          <textarea id="reflectionNote" rows="2" placeholder="Contoh: Aku bertekad selalu sabar dan rajin belajar seperti Nabi Nuh a.s..." class="w-full p-3.5 rounded-xl border-2 border-sky-300 focus:border-sky-600 focus:outline-none font-semibold text-slate-900 bg-white"></textarea>
+        </div>
+
+        <button onclick="submitReflection()" class="btn-touch px-7 py-4 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-display font-bold text-lg shadow">
+          💌 Simpan Refleksi & Lihat Pesan Penutup
+        </button>
+
+        <!-- Pesan Penutup & Motivasi Maskot -->
+        <div id="closingMotivationCard" class="hidden bg-gradient-to-r from-sky-600 to-teal-600 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+          <div class="flex flex-col sm:flex-row items-center gap-5">
+            <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-5xl shrink-0">
+              🎉
+            </div>
+            <div class="text-center sm:text-left space-y-1">
+              <h3 class="text-2xl sm:text-3xl font-display font-bold">
+                Masya Allah, Hebat Sekali!
+              </h3>
+              <p id="closingPersonalText" class="text-sky-50 font-medium text-base sm:text-lg">
+                Terima kasih sudah belajar dengan penuh semangat. Ingat kata mutiara: "Man jadda wajada — Barang siapa bersungguh-sungguh, ia pasti berhasil!"
+              </p>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-white/20 flex flex-wrap items-center justify-between gap-3">
+            <span class="text-sm font-semibold text-sky-100">
+              Disusun oleh: <strong>Abu Rahmi</strong> • PAI Kelas 2 SD (2026)
+            </span>
+            <div class="flex gap-2">
+              <button onclick="resetAllProgress()" class="btn-touch px-4 py-2.5 rounded-2xl bg-white/20 hover:bg-white/30 text-white font-display font-bold text-sm">
+                🔄 Ulangi Media
+              </button>
+              <button onclick="navigateTo('beranda')" class="btn-touch px-5 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-display font-bold text-sm">
+                🏠 Kembali ke Beranda
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         9. PETUNJUK PENGGUNAAN MEDIA
+         ------------------------------------------------------------------- -->
+    <section id="page-petunjuk" class="page-section space-y-6">
+      <div class="bg-white rounded-3xl border-4 border-sky-200 p-6 sm:p-8 shadow-lg space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">
+              Petunjuk Penggunaan Media
+            </h2>
+            <p class="text-slate-600 font-semibold">Panduan mudah untuk Murid, Guru, dan Orang Tua</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-5 space-y-2">
+            <h3 class="font-display font-bold text-sky-900 text-lg">1. Navigasi Menu Atas</h3>
+            <p class="text-slate-700 text-sm sm:text-base">
+              Gunakan deretan tombol menu di bagian atas (<strong>Beranda, Materi, Aktivitas, Game, Latihan, Kuis, Hasil, Refleksi</strong>) untuk berpindah bagian kapan saja.
+            </p>
+          </div>
+
+          <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-5 space-y-2">
+            <h3 class="font-display font-bold text-teal-900 text-lg">2. Tombol Bacakan Materi (🗣️)</h3>
+            <p class="text-slate-700 text-sm sm:text-base">
+              Di halaman <strong>Materi</strong>, murid dapat menekan tombol <em>"Bacakan Materi"</em> agar teks dibacakan dengan suara bahasa Indonesia yang jelas.
+            </p>
+          </div>
+
+          <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-5 space-y-2">
+            <h3 class="font-display font-bold text-indigo-900 text-lg">3. Mode Papan Interaktif (FID)</h3>
+            <p class="text-slate-700 text-sm sm:text-base">
+              Jika digunakan di layar sentuh kelas (Smartboard/FID), aktifkan tombol <strong>"Mode FID"</strong> di pojok kanan atas agar seluruh tombol dan huruf membesar otomatis.
+            </p>
+          </div>
+
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-5 space-y-2">
+            <h3 class="font-display font-bold text-amber-900 text-lg">4. Kumpulkan Bintang & Lencana</h3>
+            <p class="text-slate-700 text-sm sm:text-base">
+              Setiap kali menyelesaikan aktivitas, game, latihan, dan kuis, murid akan mendapatkan <strong>Poin Bintang (⭐)</strong> yang tersimpan otomatis di perangkat.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+          <div class="text-sm sm:text-base text-slate-700 font-semibold">
+            <strong>Sumber Materi:</strong> Buku Siswa Pendidikan Agama Islam dan Budi Pekerti SD Kelas II (Kemendikbudristek, Bab 5).<br/>
+            <strong>Pengembang Media:</strong> Abu Rahmi.
+          </div>
+          <button onclick="navigateTo('materi')" class="btn-touch px-6 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-display font-bold shadow">
+            📖 Mulai Baca Materi ➡️
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER RINGKAS
+       ===================================================================== -->
+  <footer class="bg-white/90 border-t-2 border-sky-200 py-4 px-4 text-center text-sm text-slate-600 font-semibold no-print">
+    <p>
+      Media Pembelajaran Interaktif PAI & Budi Pekerti SD Kelas 2 • <strong>Bab 5: Kisah Nabi Nuh a.s.</strong> • Karya <strong>Abu Rahmi</strong>
+    </p>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL NOTIFIKASI RAMAH ANAK (PENGGANTI ALERT)
+       ===================================================================== -->
+  <div id="customModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-3xl border-4 border-sky-300 max-w-md w-full p-6 text-center shadow-2xl space-y-4 animate-success">
+      <div id="modalEmoji" class="text-5xl">🌟</div>
+      <h3 id="modalTitle" class="text-2xl font-display font-bold text-slate-900">Judul Pesan</h3>
+      <p id="modalMessage" class="text-slate-700 font-semibold">Isi pesan notifikasi.</p>
+      <button onclick="closeModal()" class="btn-touch w-full py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-display font-bold text-lg shadow">
+        👍 Baik, Mengerti!
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT LOGIKA INTERAKTIF, AUDIO, GAME & ASESMEN
+       ===================================================================== -->
+  <script>
+    /* -----------------------------------------------------------------------
+       1. STATE APLIKASI & PENYIMPANAN LOKAL (localStorage)
+       ----------------------------------------------------------------------- */
+    const STORAGE_KEY = 'mpi_pai_kls2_nabi_nuh_v1';
+
+    let appState = {
+      studentName: '',
+      stars: 0,
+      soundEnabled: true,
+      fidMode: false,
+      currentPage: 'beranda',
+      currentMateriTab: 0,
+      completedActivities: {
+        storyOrder: false,
+        matching: false,
+        tts: false,
+        ark: false,
+        latihan: {}
+      },
+      quizResult: null,
+      reflection: {
+        habits: {},
+        mood: '',
+        favPart: '',
+        note: ''
+      }
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          appState = { ...appState, ...parsed };
+        }
+      } catch (e) {
+        console.warn('Gagal memuat penyimpanan lokal:', e);
+      }
+      syncUIWithState();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.warn('Gagal menyimpan progres:', e);
+      }
+      updateStarDisplay();
+    }
+
+    function addStars(amount) {
+      appState.stars += amount;
+      saveState();
+      playSound('star');
+    }
+
+    function updateStarDisplay() {
+      document.getElementById('globalStars').textContent = appState.stars;
+    }
+
+    function saveStudentName(val) {
+      appState.studentName = val.trim();
+      saveState();
+    }
+
+    function syncUIWithState() {
+      updateStarDisplay();
+      if (appState.studentName) {
+        document.getElementById('studentNameInput').value = appState.studentName;
+      }
+      if (appState.fidMode) {
+        document.body.classList.add('fid-mode');
+        document.getElementById('fidLabel').textContent = 'Mode FID: ON';
+      }
+      document.getElementById('soundIcon').textContent = appState.soundEnabled ? '🔊' : '🔇';
+    }
+
+    /* -----------------------------------------------------------------------
+       2. SISTEM EFEK SUARA (TONE.JS) & NARASI SUARA (WEB SPEECH API)
+       ----------------------------------------------------------------------- */
+    let synth = null;
+
+    function initAudio() {
+      if (!synth && typeof Tone !== 'undefined') {
+        synth = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: 'triangle' },
+          envelope: { attack: 0.02, decay: 0.15, sustain: 0.1, release: 0.4 }
+        }).toDestination();
+        synth.volume.value = -8;
+      }
+    }
+
+    async function playSound(type) {
+      if (!appState.soundEnabled) return;
+      try {
+        if (Tone.context.state !== 'running') {
+          await Tone.start();
+        }
+        initAudio();
+        if (!synth) return;
+
+        const now = Tone.now();
+        if (type === 'click') {
+          synth.triggerAttackRelease('C5', '16n', now);
+        } else if (type === 'success') {
+          synth.triggerAttackRelease(['C5', 'E5', 'G5'], '8n', now);
+        } else if (type === 'star') {
+          synth.triggerAttackRelease('E5', '16n', now);
+          synth.triggerAttackRelease('A5', '8n', now + 0.1);
+        } else if (type === 'error') {
+          synth.triggerAttackRelease('F3', '8n', now);
+        }
+      } catch (e) {
+        // Abaikan jika browser memblokir audio sebelum interaksi
+      }
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      document.getElementById('soundIcon').textContent = appState.soundEnabled ? '🔊' : '🔇';
+      if (!appState.soundEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      saveState();
+    }
+
+    function toggleFIDMode() {
+      appState.fidMode = !appState.fidMode;
+      document.body.classList.toggle('fid-mode', appState.fidMode);
+      document.getElementById('fidLabel').textContent = appState.fidMode ? 'Mode FID: ON' : 'Mode FID: OFF';
+      playSound('click');
+      saveState();
+    }
+
+    function speakText(text) {
+      if (!appState.soundEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'id-ID';
+      utterance.rate = 0.95;
+      utterance.pitch = 1.05;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* -----------------------------------------------------------------------
+       3. MODAL RAMAH ANAK & NAVIGASI HALAMAN
+       ----------------------------------------------------------------------- */
+    function showModal(emoji, title, message) {
+      document.getElementById('modalEmoji').textContent = emoji;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalMessage').textContent = message;
+      const modal = document.getElementById('customModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('customModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      playSound('click');
+    }
+
+    function navigateTo(pageId) {
+      playSound('click');
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById(`page-${pageId}`);
+      if (target) target.classList.add('active');
+
+      // Perbarui tampilan tombol menu aktif
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.nav === pageId) {
+          btn.className = 'nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-600 text-white shadow';
+        } else {
+          btn.className = 'nav-btn btn-touch px-3.5 py-2 rounded-2xl font-display font-semibold text-sm sm:text-base whitespace-nowrap flex items-center gap-1.5 bg-sky-50 text-sky-900 hover:bg-sky-100 border border-sky-200';
+        }
+      });
+
+      appState.currentPage = pageId;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (pageId === 'hasil') renderResultPage();
+      if (pageId === 'game' && !document.getElementById('gamePanelArk').classList.contains('hidden')) {
+        resizeArkCanvas();
+      }
+    }
+
+    function startLearning() {
+      const nameVal = document.getElementById('studentNameInput').value.trim();
+      if (nameVal) {
+        appState.studentName = nameVal;
+        saveState();
+      }
+      playSound('success');
+      navigateTo('materi');
+      selectMateriTab(0);
+    }
+
+    /* -----------------------------------------------------------------------
+       4. DATA & RENDER MATERI INTI (CHUNKING + VIDEO YOUTUBE + AUDIO)
+       ----------------------------------------------------------------------- */
+    const materiSlides = [
+      {
+        title: 'Apersepsi & Video Kisah Nabi Nuh a.s.',
+        mascot: '🤔',
+        speech: 'Ayo amati video kisah Nabi Nuh a.s. dan jawab pertanyaan pemantik bersama teman-teman!',
+        narration: 'Sebelum belajar lebih lanjut, ayo simak video kisah Nabi Nuh alaihissalam. Pernahkah kalian melihat kapal yang sangat besar? Mengapa Nabi Nuh membuat kapal di atas daratan?',
+        html: `
+          <div class="space-y-6">
+            <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 sm:p-5">
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-amber-950 flex items-center gap-2">
+                <span>💡</span> Pertanyaan Pemantik:
+              </h3>
+              <ul class="mt-2 space-y-1.5 text-slate-800 font-semibold">
+                <li>1. Pernahkah kalian diejek teman, lalu tetap bersabar dan tersenyum?</li>
+                <li>2. Mengapa Nabi Nuh a.s. membuat kapal yang sangat besar di daratan?</li>
+              </ul>
+            </div>
+
+            <!-- Embed Video Pembelajaran dari Instruksi -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h4 class="font-display font-bold text-lg text-sky-900">🎬 Simak Video Pembelajaran Kisah Nabi Nuh a.s.:</h4>
+                <a href="https://youtu.be/aw8zlG3KYDc?si=WYKwKXjZ0wL6wKB2" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-sky-700 underline hover:text-sky-900">
+                  Buka di YouTube ↗
+                </a>
+              </div>
+              <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-4 border-sky-300 shadow-md bg-slate-900">
+                <iframe 
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/aw8zlG3KYDc?rel=0" 
+                  title="Video Pembelajaran Kisah Nabi Nuh a.s."
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+
+            <!-- Ilustrasi Contoh Kehidupan Sehari-hari (Fauzan & Ida dari Buku Teks) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 flex items-center gap-4">
+                <span class="text-4xl">🤝</span>
+                <div>
+                  <h4 class="font-display font-bold text-sky-950">Sikap Sabar (Fauzan & Arai)</h4>
+                  <p class="text-sm text-slate-700 font-semibold">Fauzan menasihati Arai agar tetap bersabar saat menghadapi masalah.</p>
+                </div>
+              </div>
+              <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-4 flex items-center gap-4">
+                <span class="text-4xl">🎨</span>
+                <div>
+                  <h4 class="font-display font-bold text-teal-950">Sikap Kerja Keras (Ida)</h4>
+                  <p class="text-sm text-slate-700 font-semibold">Ida bekerja keras dan tekun membuat kaligrafi dari biji-bijian hingga selesai.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'A. Siapakah Nabi Nuh a.s. itu?',
+        mascot: '😊',
+        speech: 'Nabi Nuh a.s. adalah nabi dan rasul yang ke-3! Yuk kenali silsilah keluarga beliau.',
+        narration: 'Bagian A. Siapakah Nabi Nuh alaihissalam itu? Nabi Nuh alaihissalam adalah cicit Nabi Idris alaihissalam. Ayah Nabi Nuh bernama Lamik. Putra Nabi Nuh bernama Kan-an. Nabi Nuh alaihissalam adalah nabi dan rasul yang ketiga.',
+        html: `
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="inline-block bg-sky-100 text-sky-900 px-3 py-1 rounded-full font-bold text-sm">Sub-Materi A</span>
+              <h3 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">A. Siapakah Nabi Nuh a.s. itu?</h3>
+              <div class="space-y-3">
+                <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 flex items-center gap-3">
+                  <span class="text-3xl">3️⃣</span>
+                  <p class="font-bold text-slate-800">Nabi Nuh a.s. adalah <strong>nabi dan rasul ke-3</strong> utusan Allah Swt.</p>
+                </div>
+                <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-4 flex items-center gap-3">
+                  <span class="text-3xl">🌳</span>
+                  <p class="font-bold text-slate-800">Nabi Nuh a.s. merupakan <strong>cicit dari Nabi Idris a.s.</strong></p>
+                </div>
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex items-center gap-3">
+                  <span class="text-3xl">👨</span>
+                  <p class="font-bold text-slate-800">Ayah Nabi Nuh a.s. bernama <strong>Lamik</strong>, dan putranya bernama <strong>Kan'an</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Infografis Kartu Identitas Nabi Nuh a.s. -->
+            <div class="lg:col-span-5 bg-gradient-to-br from-sky-500 to-teal-600 text-white rounded-3xl p-6 shadow-md space-y-4">
+              <div class="text-center">
+                <span class="text-5xl">📜</span>
+                <h4 class="font-display font-bold text-2xl mt-1">Kartu Fakta Nabi Nuh a.s.</h4>
+              </div>
+              <div class="bg-white/15 backdrop-blur-xs rounded-2xl p-4 space-y-2.5 font-semibold">
+                <div class="flex justify-between border-b border-white/20 pb-1.5">
+                  <span>Urutan Rasul:</span>
+                  <span class="font-bold text-amber-200">Ke-3</span>
+                </div>
+                <div class="flex justify-between border-b border-white/20 pb-1.5">
+                  <span>Moyang Beliau:</span>
+                  <span class="font-bold text-amber-200">Nabi Idris a.s.</span>
+                </div>
+                <div class="flex justify-between border-b border-white/20 pb-1.5">
+                  <span>Nama Ayah:</span>
+                  <span class="font-bold text-amber-200">Lamik</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Nama Putra:</span>
+                  <span class="font-bold text-amber-200">Kan'an</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'B. Dakwah Nabi Nuh a.s.',
+        mascot: '😮',
+        speech: 'Kaum Nabi Nuh suka menyembah berhala. Tapi Nabi Nuh tetap mengajak mereka dengan sabar!',
+        narration: 'Bagian B. Dakwah Nabi Nuh alaihissalam. Setelah Nabi Idris wafat, kaum Nabi Nuh banyak menyembah patung berhala, berbuat zalim, dan sombong. Nabi Nuh mengajak mereka menyembah Allah Subhanahu wa Taala. Walau dicaci dan dihina, Nabi Nuh tetap bersabar.',
+        html: `
+          <div class="space-y-5">
+            <span class="inline-block bg-teal-100 text-teal-900 px-3 py-1 rounded-full font-bold text-sm">Sub-Materi B</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">B. Dakwah Nabi Nuh a.s.</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-5 space-y-2">
+                <span class="text-4xl">🗿</span>
+                <h4 class="font-display font-bold text-rose-950 text-lg">1. Keadaan Kaumnya</h4>
+                <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                  Setelah Nabi Idris a.s. wafat, masyarakat menyembah <strong>patung berhala</strong>, sombong, dan berbuat zalim.
+                </p>
+              </div>
+
+              <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-5 space-y-2">
+                <span class="text-4xl">🤲</span>
+                <h4 class="font-display font-bold text-sky-950 text-lg">2. Ajakan Kebaikan</h4>
+                <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                  Nabi Nuh a.s. mengajak mereka ke jalan yang benar untuk <strong>menyembah Allah Swt.</strong> dan beramal saleh.
+                </p>
+              </div>
+
+              <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-5 space-y-2">
+                <span class="text-4xl">🛡️</span>
+                <h4 class="font-display font-bold text-amber-950 text-lg">3. Dicaci Tetap Sabar</h4>
+                <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                  Kaumnya menghina dan menolak ajakan beliau, namun Nabi Nuh a.s. <strong>tidak marah dan tetap sabar</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'C. Sikap Sabar dan Kerja Keras Nabi Nuh a.s.',
+        mascot: '🤩',
+        speech: '950 tahun berdakwah dan bekerja keras membuat kapal besar! Sungguh luar biasa!',
+        narration: 'Bagian C. Sikap Sabar dan Kerja Keras Nabi Nuh alaihissalam. Selama 950 tahun berdakwah, hanya 80 orang yang beriman. Bahkan putranya Kan-an tidak mau beriman. Allah memerintahkan Nabi Nuh membuat kapal besar. Ketika banjir besar datang, hanya Nabi Nuh, pengikut yang beriman, dan sepasang hewan di atas kapal yang selamat.',
+        html: `
+          <div class="space-y-5">
+            <span class="inline-block bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-bold text-sm">Sub-Materi C</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">C. Sikap Sabar dan Kerja Keras Nabi Nuh a.s.</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-5 flex gap-3.5 items-start">
+                <span class="text-4xl">⏳</span>
+                <div>
+                  <h4 class="font-display font-bold text-sky-950 text-lg">950 Tahun Berdakwah</h4>
+                  <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                    Hanya <strong>80 orang</strong> yang beriman. Putra beliau sendiri, <strong>Kan'an</strong>, menolak ajakan beriman.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-5 flex gap-3.5 items-start">
+                <span class="text-4xl">🔨</span>
+                <div>
+                  <h4 class="font-display font-bold text-amber-950 text-lg">Membuat Kapal Besar</h4>
+                  <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                    Atas perintah Allah Swt., Nabi Nuh a.s. & pengikutnya <strong>bekerja keras</strong> membuat kapal besar walau diejek.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-5 flex gap-3.5 items-start">
+                <span class="text-4xl">🐘</span>
+                <div>
+                  <h4 class="font-display font-bold text-teal-950 text-lg">Naik ke Atas Kapal</h4>
+                  <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                    Nabi Nuh a.s., orang-orang beriman, bekal makanan, dan <strong>sepasang dari setiap jenis hewan</strong> naik ke kapal.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-5 flex gap-3.5 items-start">
+                <span class="text-4xl">🌊</span>
+                <div>
+                  <h4 class="font-display font-bold text-indigo-950 text-lg">Banjir Besar & Keselamatan</h4>
+                  <p class="text-slate-700 font-semibold text-sm sm:text-base">
+                    Kaum yang kafir termasuk Kan'an tenggelam. <strong>Allah Swt. menyelamatkan orang-orang yang beriman.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'D. Meneladan Kisah Nabi Nuh a.s.',
+        mascot: '🥳',
+        speech: 'Ayo kita tiru dua sikap utama Nabi Nuh a.s. dalam kehidupan sehari-hari!',
+        narration: 'Bagian D. Meneladan Kisah Nabi Nuh alaihissalam. Sikap yang harus kita teladani adalah sabar dan kerja keras. Contoh sikap sabar adalah sabar dalam beribadah dan sabar menghadapi musibah. Contoh kerja keras adalah rajin belajar setiap hari dan mengerjakan tugas sendiri. Man jadda wajada, barang siapa bersungguh-sungguh ia pasti berhasil.',
+        html: `
+          <div class="space-y-5">
+            <span class="inline-block bg-orange-100 text-orange-900 px-3 py-1 rounded-full font-bold text-sm">Sub-Materi D</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">D. Meneladan Kisah Nabi Nuh a.s.</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <!-- Teladan 1: Sabar -->
+              <div class="bg-sky-50 border-3 border-sky-300 rounded-3xl p-6 space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">💖</span>
+                  <h4 class="font-display font-bold text-xl text-sky-950">1. Sikap Sabar</h4>
+                </div>
+                <ul class="space-y-2 text-slate-800 font-semibold">
+                  <li>✅ Sabar dalam melaksanakan ibadah (salat & mengaji).</li>
+                  <li>✅ Sabar saat menghadapi musibah atau kesulitan.</li>
+                  <li>✅ Tidak membalas ejekan teman dengan marah.</li>
+                </ul>
+              </div>
+
+              <!-- Teladan 2: Kerja Keras -->
+              <div class="bg-amber-50 border-3 border-amber-300 rounded-3xl p-6 space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">💪</span>
+                  <h4 class="font-display font-bold text-xl text-amber-950">2. Sikap Kerja Keras</h4>
+                </div>
+                <ul class="space-y-2 text-slate-800 font-semibold">
+                  <li>✅ Rajin belajar setiap hari untuk meraih cita-cita.</li>
+                  <li>✅ Mengerjakan tugas dan ulangan sekolah sendiri.</li>
+                  <li>✅ Datang ke sekolah tepat waktu dan tidak malas.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Kata Mutiara Arab & Arti -->
+            <div class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-3xl p-6 text-center shadow-md">
+              <p class="text-3xl sm:text-4xl font-bold mb-2" dir="rtl">مَنْ جَدَّ وَجَدَ</p>
+              <p class="font-display font-bold text-lg sm:text-xl text-amber-200">
+                "Man Jadda Wajada — Barang siapa bersungguh-sungguh, ia pasti berhasil."
+              </p>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'Ayo Bernyanyi & Rangkuman Bab 5',
+        mascot: '🎶',
+        speech: 'Yuk bernyanyi lagu Kisah Nabi Nuh dengan nada lagu Allāhul Kāfi!',
+        narration: 'Ayo bernyanyi lagu Nabi Nuh dengan nada lagu Allahul Kafi. Inilah kisah kisah Nabi Nuh, Nabi ketiga sabar dan patuh, Lamik ayahnya Kan-an putranya, Nabi Idris itu moyangnya. Teman-teman ayo semua, kerja keras janganlah lupa, sabar ibadah sabar musibah, hidup bahagia penuh berkah.',
+        html: `
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <!-- Kartu Lirik Lagu -->
+            <div class="lg:col-span-6 bg-amber-50 border-3 border-amber-300 rounded-3xl p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-display font-bold text-2xl text-amber-950">🎵 Lagu: Nabi Nuh a.s.</h3>
+                <span class="text-xs font-bold bg-amber-200 text-amber-950 px-3 py-1 rounded-full">Nada: Allāhul Kāfi</span>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-amber-200 space-y-3 font-bold text-slate-800 leading-relaxed">
+                <p>
+                  Inilah kisah, kisah Nabi Nuh<br/>
+                  Nabi ketiga sabar dan patuh<br/>
+                  Lamik ayahnya, Kan'an putranya<br/>
+                  Nabi Idris itu moyangnya
+                </p>
+                <p>
+                  Teman-teman, ayo semua<br/>
+                  Kerja keras janganlah lupa<br/>
+                  Sabar ibadah, sabar musibah<br/>
+                  Hidup bahagia penuh berkah
+                </p>
+              </div>
+              <p class="text-xs text-slate-600 font-semibold">Lirik: A. Zainal Abidin (Buku PAI Kelas 2)</p>
+            </div>
+
+            <!-- Rangkuman Cepat -->
+            <div class="lg:col-span-6 bg-sky-50 border-3 border-sky-300 rounded-3xl p-6 space-y-3">
+              <h3 class="font-display font-bold text-2xl text-sky-950">📌 Intisari Pelajaran</h3>
+              <ol class="list-decimal pl-5 space-y-2 text-slate-800 font-semibold text-sm sm:text-base">
+                <li>Nabi Nuh a.s. adalah cicit Nabi Idris a.s. dan nabi ke-3.</li>
+                <li>Kaumnya menyembah berhala dan berperilaku tercela.</li>
+                <li>Nabi Nuh a.s. sabar berdakwah selama 950 tahun.</li>
+                <li>Nabi Nuh a.s. bekerja keras membuat kapal besar.</li>
+                <li>Orang beriman selamat di kapal, sedangkan kaum kafir dan Kan'an tenggelam.</li>
+                <li>Teladan utama Nabi Nuh a.s. adalah <strong>sabar</strong> dan <strong>bekerja keras</strong>.</li>
+              </ol>
+              <div class="pt-2">
+                <button onclick="navigateTo('aktivitas')" class="btn-touch w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-display font-bold text-lg shadow">
+                  🎯 Lanjut ke Aktivitas Seru ➡️
+                </button>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    function selectMateriTab(idx) {
+      playSound('click');
+      appState.currentMateriTab = idx;
+      const slide = materiSlides[idx];
+
+      document.getElementById('materiMascot').textContent = slide.mascot;
+      document.getElementById('materiMascotSpeech').textContent = slide.speech;
+      document.getElementById('materiContentCard').innerHTML = slide.html;
+
+      document.querySelectorAll('.mtab-btn').forEach(btn => {
+        if (parseInt(btn.dataset.mtab, 10) === idx) {
+          btn.className = 'mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-sky-600 text-white shadow text-center';
+        } else {
+          btn.className = 'mtab-btn btn-touch p-3 rounded-2xl font-display font-bold text-sm sm:text-base bg-white text-slate-800 border-2 border-sky-200 hover:bg-sky-50 text-center';
+        }
+      });
+
+      document.getElementById('btnPrevMateri').disabled = idx === 0;
+      document.getElementById('btnPrevMateri').style.opacity = idx === 0 ? '0.5' : '1';
+      document.getElementById('btnNextMateri').innerHTML = idx === materiSlides.length - 1
+        ? '<span>Ke Aktivitas</span><span>🎯</span>'
+        : '<span>Selanjutnya</span><span>➡️</span>';
+    }
+
+    function prevMateriTab() {
+      if (appState.currentMateriTab > 0) {
+        selectMateriTab(appState.currentMateriTab - 1);
+      }
+    }
+
+    function nextMateriTab() {
+      if (appState.currentMateriTab < materiSlides.length - 1) {
+        selectMateriTab(appState.currentMateriTab + 1);
+      } else {
+        navigateTo('aktivitas');
+      }
+    }
+
+    function speakCurrentMateri() {
+      const slide = materiSlides[appState.currentMateriTab];
+      speakText(slide.narration);
+    }
+
+    /* -----------------------------------------------------------------------
+       5. AKTIVITAS 1: MENYUSUN URUTAN KARTU KISAH NABI NUH A.S. (6 KARTU)
+       ----------------------------------------------------------------------- */
+    const storyCardsData = [
+      { id: 1, icon: '🗿', text: 'Nabi Nuh a.s. sedih karena kaumnya menyembah patung berhala.' },
+      { id: 2, icon: '🗣️', text: 'Nabi Nuh a.s. menasihati kaumnya menyembah Allah Swt., namun mereka menolak.' },
+      { id: 3, icon: '🔨', text: 'Allah Swt. memerintahkan Nabi Nuh a.s. membuat kapal yang sangat besar.' },
+      { id: 4, icon: '🐘', text: 'Kapal diisi orang-orang yang beriman dan hewan secara berpasang-pasangan.' },
+      { id: 5, icon: '⛈️', text: 'Allah Swt. mengirim hujan badai dan banjir besar bagi kaum yang kafir.' },
+      { id: 6, icon: '🌈', text: 'Nabi Nuh a.s. dan pengikutnya yang beriman diselamatkan Allah Swt.' }
+    ];
+
+    let shuffledCards = [];
+    let orderedCards = [];
+
+    function resetStoryCards() {
+      shuffledCards = [...storyCardsData].sort(() => Math.random() - 0.5);
+      orderedCards = [];
+      const fb = document.getElementById('storyOrderFeedback');
+      fb.classList.add('hidden');
+      renderStoryCards();
+    }
+
+    function renderStoryCards() {
+      const orderedZone = document.getElementById('orderedCardsZone');
+      const shuffledZone = document.getElementById('shuffledCardsZone');
+
+      if (orderedCards.length === 0) {
+        orderedZone.innerHTML = `<p class="col-span-full text-center text-sky-700 font-semibold py-6">Klik kartu cerita di bawah untuk menyusun urutan nomor 1 sampai 6 di sini...</p>`;
+      } else {
+        orderedZone.innerHTML = orderedCards.map((card, index) => `
+          <button onclick="removeFromOrdered(${card.id})" class="btn-touch text-left bg-white border-2 border-sky-500 rounded-2xl p-3.5 shadow-sm hover:bg-rose-50 transition flex items-start gap-3">
+            <span class="w-8 h-8 rounded-xl bg-sky-600 text-white font-display font-bold flex items-center justify-center shrink-0">${index + 1}</span>
+            <div class="text-sm font-bold text-slate-800">
+              <span class="text-xl mr-1">${card.icon}</span> ${card.text}
+            </div>
+          </button>
+        `).join('');
+      }
+
+      shuffledZone.innerHTML = shuffledCards.map(card => `
+        <button onclick="addToOrdered(${card.id})" class="btn-touch text-left bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 rounded-2xl p-3.5 shadow-sm transition flex items-start gap-3">
+          <span class="text-2xl shrink-0">${card.icon}</span>
+          <span class="text-sm font-bold text-slate-800">${card.text}</span>
+        </button>
+      `).join('');
+    }
+
+    function addToOrdered(id) {
+      playSound('click');
+      const idx = shuffledCards.findIndex(c => c.id === id);
+      if (idx > -1) {
+        const [moved] = shuffledCards.splice(idx, 1);
+        orderedCards.push(moved);
+        renderStoryCards();
+      }
+    }
+
+    function removeFromOrdered(id) {
+      playSound('click');
+      const idx = orderedCards.findIndex(c => c.id === id);
+      if (idx > -1) {
+        const [moved] = orderedCards.splice(idx, 1);
+        shuffledCards.push(moved);
+        renderStoryCards();
+      }
+    }
+
+    function checkStoryOrder() {
+      const fb = document.getElementById('storyOrderFeedback');
+      fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'border-emerald-400', 'bg-rose-100', 'text-rose-900', 'border-rose-400');
+
+      if (orderedCards.length < 6) {
+        playSound('error');
+        fb.classList.add('bg-amber-100', 'text-amber-950', 'border-2', 'border-amber-400');
+        fb.innerHTML = '⚠️ Pindahkan semua 6 kartu cerita ke kotak urutan terlebih dahulu ya!';
+        return;
+      }
+
+      let correctCount = 0;
+      orderedCards.forEach((card, index) => {
+        if (card.id === index + 1) correctCount++;
+      });
+
+      if (correctCount === 6) {
+        playSound('success');
+        fb.classList.add('bg-emerald-100', 'text-emerald-900', 'border-2', 'border-emerald-400', 'animate-success');
+        fb.innerHTML = '🎉 Masya Allah, Benar Semua! Kamu berhasil menyusun urutan kisah Nabi Nuh a.s. dari awal hingga selamat (+20 Bintang)!';
+        if (!appState.completedActivities.storyOrder) {
+          appState.completedActivities.storyOrder = true;
+          addStars(20);
+        }
+      } else {
+        playSound('error');
+        fb.classList.add('bg-rose-100', 'text-rose-900', 'border-2', 'border-rose-400', 'animate-error');
+        fb.innerHTML = `💡 Baru <strong>${correctCount} dari 6</strong> kartu yang urutannya tepat. Petunjuk: Ingat urutannya → <em>Kaum menyembah berhala → Nabi berdakwah → Membuat kapal → Hewan masuk kapal → Banjir besar → Selamat</em>. Klik kartu yang salah untuk menukarnya!`;
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       6. AKTIVITAS 2: MATCHING (MENJODOHKAN FAKTA)
+       ----------------------------------------------------------------------- */
+    const matchingPairs = [
+      { id: 'm1', left: 'Urutan Nabi Nuh a.s.', right: 'Nabi dan Rasul ke-3' },
+      { id: 'm2', left: 'Ayah Nabi Nuh a.s.', right: 'Lamik' },
+      { id: 'm3', left: 'Putra Nabi Nuh yang kafir', right: "Kan'an" },
+      { id: 'm4', left: 'Lama Nabi Nuh berdakwah', right: '950 Tahun' },
+      { id: 'm5', left: 'Sikap utama Nabi Nuh a.s.', right: 'Sabar dan Kerja Keras' }
+    ];
+
+    let selectedLeftId = null;
+    let matchedIds = [];
+
+    function initMatchingGame() {
+      selectedLeftId = null;
+      matchedIds = [];
+      const fb = document.getElementById('matchingFeedback');
+      fb.classList.add('hidden');
+      renderMatchingBoard();
+    }
+
+    function renderMatchingBoard() {
+      const leftCol = document.getElementById('matchLeftCol');
+      const rightCol = document.getElementById('matchRightCol');
+
+      const rightShuffled = [...matchingPairs].sort((a, b) => a.right.localeCompare(b.right));
+
+      leftCol.innerHTML = matchingPairs.map(item => {
+        const isMatched = matchedIds.includes(item.id);
+        const isSelected = selectedLeftId === item.id;
+        let cls = 'bg-white border-2 border-sky-300 text-slate-900 hover:bg-sky-50';
+        if (isMatched) cls = 'bg-emerald-100 border-2 border-emerald-500 text-emerald-900 opacity-80';
+        else if (isSelected) cls = 'bg-amber-200 border-2 border-amber-500 text-slate-950 scale-[1.02]';
+
+        return `
+          <button onclick="selectMatchLeft('${item.id}')" ${isMatched ? 'disabled' : ''} class="btn-touch w-full p-4 rounded-2xl font-bold text-left flex items-center justify-between shadow-sm ${cls}">
+            <span>${item.left}</span>
+            <span>${isMatched ? '✅' : '👉'}</span>
+          </button>
+        `;
+      }).join('');
+
+      rightCol.innerHTML = rightShuffled.map(item => {
+        const isMatched = matchedIds.includes(item.id);
+        let cls = 'bg-sky-50 border-2 border-sky-300 text-sky-950 hover:bg-sky-100';
+        if (isMatched) cls = 'bg-emerald-100 border-2 border-emerald-500 text-emerald-900 opacity-80';
+
+        return `
+          <button onclick="selectMatchRight('${item.id}')" ${isMatched ? 'disabled' : ''} class="btn-touch w-full p-4 rounded-2xl font-bold text-left flex items-center justify-between shadow-sm ${cls}">
+            <span>${item.right}</span>
+            <span>${isMatched ? '✅' : '🎯'}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectMatchLeft(id) {
+      playSound('click');
+      selectedLeftId = id;
+      renderMatchingBoard();
+    }
+
+    function selectMatchRight(rightId) {
+      const fb = document.getElementById('matchingFeedback');
+      if (!selectedLeftId) {
+        playSound('error');
+        fb.classList.remove('hidden');
+        fb.className = 'rounded-2xl p-4 font-bold bg-amber-100 text-amber-950 border-2 border-amber-300';
+        fb.textContent = '👉 Pilih dulu kartu pertanyaan di kolom sebelah kiri ya!';
+        return;
+      }
+
+      if (selectedLeftId === rightId) {
+        playSound('success');
+        matchedIds.push(rightId);
+        selectedLeftId = null;
+        renderMatchingBoard();
+
+        if (matchedIds.length === matchingPairs.length) {
+          fb.classList.remove('hidden');
+          fb.className = 'rounded-2xl p-4 font-bold bg-emerald-100 text-emerald-900 border-2 border-emerald-400 animate-success';
+          fb.textContent = '🏆 Hebat! Semua pasangan fakta Nabi Nuh a.s. berhasil kamu jodohkan dengan tepat (+15 Bintang)!';
+          if (!appState.completedActivities.matching) {
+            appState.completedActivities.matching = true;
+            addStars(15);
+          }
+        } else {
+          fb.classList.remove('hidden');
+          fb.className = 'rounded-2xl p-3 font-bold bg-teal-50 text-teal-900 border border-teal-300';
+          fb.textContent = '✅ Cocok! Ayo lanjutkan menjodohkan pasangan berikutnya.';
+        }
+      } else {
+        playSound('error');
+        fb.classList.remove('hidden');
+        fb.className = 'rounded-2xl p-3 font-bold bg-rose-100 text-rose-900 border-2 border-rose-300 animate-error';
+        fb.textContent = '✗ Belum cocok. Coba baca kembali kartu di sebelah kiri dan pilih pasangan yang tepat!';
+        selectedLeftId = null;
+        renderMatchingBoard();
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       7. GAME 1: TEKA-TEKI SILANG (SESUAI HALAMAN 138 BUKU PAKET)
+       ----------------------------------------------------------------------- */
+    // Grid 9x8 mewakili TTS buku paket:
+    // 1 Menurun (col 3, row 0..5): B A N J I R
+    // 2 Mendatar (row 1, col 0..4): K A P A L
+    // 3 Menurun (col 6, row 1..5): L A M I K
+    // 4 Mendatar (row 3, col 4..8): K A N A N (Kan'an -> KANAN)
+    // 5 Menurun (col 8, row 3..5): N U H
+    // 6 Mendatar (row 5, col 3..7): I D R I S
+    const ttsLayout = [
+      // r0
+      [null, null, null, { ch: 'B', num: '1', locked: true }, null, null, null, null, null],
+      // r1
+      [{ ch: 'K', num: '2', locked: true }, { ch: 'A' }, { ch: 'P' }, { ch: 'A' }, { ch: 'L' }, null, { ch: 'L', num: '3', locked: true }, null, null],
+      // r2
+      [null, null, null, { ch: 'N' }, null, null, { ch: 'A' }, null, null],
+      // r3
+      [null, null, null, { ch: 'J' }, { ch: 'K', num: '4', locked: true }, { ch: 'A' }, { ch: 'M' }, { ch: 'A' }, { ch: 'N', num: '5', locked: true }],
+      // r4
+      [null, null, null, { ch: 'I' }, null, null, { ch: 'I' }, null, { ch: 'U' }],
+      // r5
+      [null, null, null, { ch: 'R', num: '6' }, { ch: 'I' }, { ch: 'D' }, { ch: 'K' }, { ch: 'S' }, { ch: 'H' }]
+    ];
+    // Perbaikan persilangan row 5 agar 1 Menurun (BANJIR) dan 6 Mendatar (IDRIS) & 3 Menurun (LAMIK) akurat:
+    // Mari susun koordinat bersih tanpa tabrakan huruf:
+    // 1 Menurun (col 3, row 0..5): B-A-N-J-I-R
+    // 2 Mendatar (row 1, col 0..4): K-A-P-A-L (bertemu A di col 3, row 1!)
+    // 3 Menurun (col 5, row 1..5): L-A-M-I-K
+    // 4 Mendatar (row 3, col 4..8): K-A-N-A-N (bertemu A di col 5, row 3!)
+    // 5 Menurun (col 8, row 3..5): N-U-H (bertemu N di col 8, row 3!)
+    // 6 Mendatar (row 4, col 3..7): I-D-R-I-S (bertemu I di col 3, row 4 dan I di col 5, row 4!)
+    const cleanTTS = [
+      // row 0
+      [null, null, null, { ch: 'B', num: '1', locked: true }, null, null, null, null, null],
+      // row 1
+      [{ ch: 'K', num: '2', locked: true }, { ch: 'A' }, { ch: 'P' }, { ch: 'A' }, { ch: 'L' }, { ch: 'L', num: '3', locked: true }, null, null, null],
+      // row 2
+      [null, null, null, { ch: 'N' }, null, { ch: 'A' }, null, null, null],
+      // row 3
+      [null, null, null, { ch: 'J' }, { ch: 'K', num: '4', locked: true }, { ch: 'A' }, { ch: 'N' }, { ch: 'A' }, { ch: 'N', num: '5', locked: true }],
+      // row 4
+      [null, null, null, { ch: 'I', num: '6', locked: true }, { ch: 'D' }, { ch: 'R' }, { ch: 'I' }, { ch: 'S' }, { ch: 'U' }],
+      // row 5
+      [null, null, null, { ch: 'R' }, null, { ch: 'K' }, null, null, { ch: 'H' }]
+    ];
+    // Pastikan 3 Menurun (col 5): row 1='L', row 2='A', row 3='M', row 4='I', row 5='K'.
+    // Dan 4 Mendatar (row 3, col 4..8): K-A-N-A-N -> di col 5 itu 'A' (kurang pas jika 3 Menurun di col 5).
+    // Jika 3 Menurun di col 7: row 1='L', row 2='A', row 3='M', row 4='I', row 5='K'.
+    // Maka 4 Mendatar (row 3, col 4..8): K(4)-A(5)-N(6)-A(7)-N(8) -> col 7 = 'A' vs 'M'.
+    // Solusi persilangan 100% valid secara silang kata:
+    // 1 Menurun (col 2, row 0..5): B(0)-A(1)-N(2)-J(3)-I(4)-R(5)
+    // 2 Mendatar (row 1, col 0..4): K(0)-A(1)-P(2)-A(3)-L(4) -> bertabrakan di col 2 (P vs N). Jika col 3: K(0)-A(1)-P(2)-A(3)-L(4) -> col 3 = 'A'!
+    // Jadi 1 Menurun di col 3: B(0)-A(1)-N(2)-J(3)-I(4)-R(5). (Persilangan col 3, row 1 = 'A'!)
+    // 6 Mendatar (row 4, col 3..7): I(3)-D(4)-R(5)-I(6)-S(7). (Persilangan col 3, row 4 = 'I'!)
+    // 3 Menurun (col 6, row 1..5): L(1)-A(2)-M(3)-I(4)-K(5). (Persilangan col 6, row 4 = 'I'!)
+    // 4 Mendatar (row 2, col 5..9): K(5)-A(6)-N(7)-A(8)-N(9). (Persilangan col 6, row 2 = 'A'!)
+    // 5 Menurun (col 9, row 2..4): N(2)-U(3)-H(4). (Persilangan col 9, row 2 = 'N'!)
+    const verifiedTTS = [
+      // 10 kolom (0..9), 6 baris (0..5)
+      [null, null, null, { ch: 'B', num: '1', locked: true }, null, null, null, null, null, null],
+      [{ ch: 'K', num: '2', locked: true }, { ch: 'A' }, { ch: 'P' }, { ch: 'A' }, { ch: 'L' }, null, { ch: 'L', num: '3', locked: true }, null, null, null],
+      [null, null, null, { ch: 'N' }, null, { ch: 'K', num: '4', locked: true }, { ch: 'A' }, { ch: 'N' }, { ch: 'A' }, { ch: 'N', num: '5', locked: true }],
+      [null, null, null, { ch: 'J' }, null, null, { ch: 'M' }, null, null, { ch: 'U' }],
+      [null, null, null, { ch: 'I', num: '6', locked: true }, { ch: 'D' }, { ch: 'R' }, { ch: 'I' }, { ch: 'S' }, null, { ch: 'H' }],
+      [null, null, null, { ch: 'R' }, null, null, { ch: 'K' }, null, null, null]
+    ];
+
+    function renderTTSGrid() {
+      const container = document.getElementById('ttsGridContainer');
+      container.style.gridTemplateColumns = 'repeat(10, minmax(38px, 1fr))';
+      let html = '';
+
+      verifiedTTS.forEach((row, rIdx) => {
+        row.forEach((cell, cIdx) => {
+          if (!cell) {
+            html += `<div class="w-10 h-10 sm:w-11 sm:h-11"></div>`;
+          } else {
+            html += `
+              <div class="relative">
+                ${cell.num ? `<span class="absolute top-0.5 left-1 text-[10px] font-bold text-sky-800 pointer-events-none">${cell.num}</span>` : ''}
+                <input 
+                  type="text" 
+                  maxlength="1" 
+                  data-ans="${cell.ch}"
+                  value="${cell.locked ? cell.ch : ''}"
+                  ${cell.locked ? 'readonly' : ''}
+                  class="tts-cell ${cell.locked ? 'locked' : ''}"
+                  aria-label="Kotak TTS baris ${rIdx + 1} kolom ${cIdx + 1}"
+                />
+              </div>
+            `;
+          }
+        });
+      });
+
+      container.innerHTML = html;
+    }
+
+    function checkTTS() {
+      const inputs = document.querySelectorAll('#ttsGridContainer .tts-cell');
+      let totalEditable = 0;
+      let correctEditable = 0;
+
+      inputs.forEach(inp => {
+        if (!inp.readOnly) {
+          totalEditable++;
+          const val = inp.value.trim().toUpperCase();
+          const ans = inp.dataset.ans;
+          if (val === ans) {
+            correctEditable++;
+            inp.classList.add('correct');
+          } else {
+            inp.classList.remove('correct');
+          }
+        }
+      });
+
+      const fb = document.getElementById('ttsFeedback');
+      fb.classList.remove('hidden');
+
+      if (correctEditable === totalEditable) {
+        playSound('success');
+        fb.className = 'rounded-2xl p-4 font-bold bg-emerald-100 text-emerald-900 border-2 border-emerald-400 animate-success';
+        fb.textContent = '🎉 Luar Biasa! Semua jawaban Teka-Teki Silang benar semua (+20 Bintang)!';
+        if (!appState.completedActivities.tts) {
+          appState.completedActivities.tts = true;
+          addStars(20);
+        }
+      } else {
+        playSound('error');
+        fb.className = 'rounded-2xl p-4 font-bold bg-amber-100 text-amber-950 border-2 border-amber-400';
+        fb.textContent = `💡 Sudah benar ${correctEditable} dari ${totalEditable} kotak huruf. Kotak yang hijau sudah tepat, ayo lengkapi sisanya!`;
+      }
+    }
+
+    function switchGameTab(tab) {
+      playSound('click');
+      if (tab === 'tts') {
+        document.getElementById('gamePanelTTS').classList.remove('hidden');
+        document.getElementById('gamePanelArk').classList.add('hidden');
+        document.getElementById('tabBtnTTS').className = 'btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-orange-600 text-white shadow';
+        document.getElementById('tabBtnArk').className = 'btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-sky-100 text-sky-900 border-2 border-sky-300';
+      } else {
+        document.getElementById('gamePanelTTS').classList.add('hidden');
+        document.getElementById('gamePanelArk').classList.remove('hidden');
+        document.getElementById('tabBtnArk').className = 'btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-orange-600 text-white shadow';
+        document.getElementById('tabBtnTTS').className = 'btn-touch px-5 py-3 rounded-2xl font-display font-bold bg-sky-100 text-sky-900 border-2 border-sky-300';
+        resizeArkCanvas();
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       8. GAME 2: MINI GAME BAHTERA KEBAIKAN (HTML5 CANVAS RESPONSIF)
+       ----------------------------------------------------------------------- */
+    let arkRunning = false;
+    let arkScore = 0;
+    let arkLives = 3;
+    let arkX = 150;
+    let arkDir = 0;
+    let fallingItems = [];
+    let arkAnimId = null;
+
+    function resizeArkCanvas() {
+      const canvas = document.getElementById('arkCanvas');
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width || 600;
+      canvas.height = rect.height || 300;
+      arkX = canvas.width / 2 - 40;
+    }
+
+    function moveArk(dir) {
+      arkDir = dir;
+    }
+
+    function stopArk() {
+      arkDir = 0;
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') arkDir = -1;
+      if (e.key === 'ArrowRight') arkDir = 1;
+    });
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') arkDir = 0;
+    });
+    window.addEventListener('resize', resizeArkCanvas);
+
+    function startArkGame() {
+      playSound('click');
+      resizeArkCanvas();
+      arkRunning = true;
+      arkScore = 0;
+      arkLives = 3;
+      fallingItems = [];
+      document.getElementById('arkScore').textContent = '0';
+      document.getElementById('arkLives').textContent = '❤️❤️❤️';
+      document.getElementById('arkOverlay').classList.add('hidden');
+      if (arkAnimId) cancelAnimationFrame(arkAnimId);
+      arkLoop();
+    }
+
+    function arkLoop() {
+      if (!arkRunning) return;
+      const canvas = document.getElementById('arkCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Gerak Bahtera
+      const speed = Math.max(5, canvas.width * 0.01);
+      arkX += arkDir * speed;
+      if (arkX < 10) arkX = 10;
+      if (arkX > canvas.width - 90) arkX = canvas.width - 90;
+
+      // Gambar Bahtera Kayu
+      const arkY = canvas.height - 65;
+      ctx.fillStyle = '#92400E';
+      ctx.beginPath();
+      ctx.moveTo(arkX, arkY);
+      ctx.lineTo(arkX + 80, arkY);
+      ctx.lineTo(arkX + 68, arkY + 32);
+      ctx.lineTo(arkX + 12, arkY + 32);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = '#D97706';
+      ctx.fillRect(arkX + 18, arkY - 18, 44, 18);
+
+      // Munculkan item jatuh acak
+      if (Math.random() < 0.03) {
+        const types = [
+          { icon: '🪵', good: true },
+          { icon: '🐑', good: true },
+          { icon: '🕊️', good: true },
+          { icon: '🪨', good: false }
+        ];
+        const chosen = types[Math.floor(Math.random() * types.length)];
+        fallingItems.push({
+          x: 20 + Math.random() * (canvas.width - 50),
+          y: -20,
+          vy: 2.3 + Math.random() * 1.5,
+          ...chosen
+        });
+      }
+
+      ctx.font = '28px sans-serif';
+      for (let i = fallingItems.length - 1; i >= 0; i--) {
+        const item = fallingItems[i];
+        item.y += item.vy;
+        ctx.fillText(item.icon, item.x, item.y);
+
+        // Deteksi tangkap
+        if (item.y > arkY - 15 && item.y < arkY + 30 && item.x > arkX - 15 && item.x < arkX + 75) {
+          if (item.good) {
+            arkScore += 10;
+            document.getElementById('arkScore').textContent = arkScore;
+            playSound('click');
+          } else {
+            arkLives--;
+            document.getElementById('arkLives').textContent = '❤️'.repeat(Math.max(0, arkLives));
+            playSound('error');
+          }
+          fallingItems.splice(i, 1);
+          continue;
+        }
+
+        if (item.y > canvas.height + 20) {
+          fallingItems.splice(i, 1);
+        }
+      }
+
+      if (arkLives <= 0 || arkScore >= 100) {
+        arkRunning = false;
+        const overlay = document.getElementById('arkOverlay');
+        overlay.classList.remove('hidden');
+        if (arkScore >= 100) {
+          playSound('success');
+          document.getElementById('arkOverlayTitle').textContent = '🎉 Misi Bahtera Berhasil!';
+          document.getElementById('arkOverlayDesc').textContent = `Hebat! Kamu mengumpulkan ${arkScore} poin kayu dan pasangan hewan (+15 Bintang)!`;
+          if (!appState.completedActivities.ark) {
+            appState.completedActivities.ark = true;
+            addStars(15);
+          }
+        } else {
+          document.getElementById('arkOverlayTitle').textContent = '⛵ Bahtera Terkena Karang';
+          document.getElementById('arkOverlayDesc').textContent = `Skor kamu ${arkScore}. Tetap sabar dan kerja keras seperti Nabi Nuh a.s., ayo coba lagi!`;
+        }
+        return;
+      }
+
+      arkAnimId = requestAnimationFrame(arkLoop);
+    }
+
+    /* -----------------------------------------------------------------------
+       9. LATIHAN LANGSUNG (ASESMEN FOR LEARNING DENGAN PETUNJUK KOREKTIF)
+       ----------------------------------------------------------------------- */
+    const latihanQuestions = [
+      {
+        id: 'L1',
+        statement: '1. Nabi Nuh a.s. adalah keturunan (cicit) dari Nabi Idris a.s.',
+        answer: true,
+        hint: 'Ingat lagu Nabi Nuh: "Nabi Idris itu moyangnya". Coba pilih lagi!',
+        explanation: 'Benar! Nabi Nuh a.s. adalah cicit dari Nabi Idris a.s.'
+      },
+      {
+        id: 'L2',
+        statement: '2. Lamik adalah nama putra Nabi Nuh a.s. yang tidak mau beriman.',
+        answer: false,
+        hint: 'Perhatikan lagi: Lamik adalah nama ayah Nabi Nuh a.s., sedangkan putranya bernama Kan\'an.',
+        explanation: 'Tepat sekali! Pernyataan itu salah karena Lamik adalah ayah Nabi Nuh a.s., sedangkan putranya bernama Kan\'an.'
+      },
+      {
+        id: 'L3',
+        statement: '3. Nabi Nuh a.s. adalah utusan Allah Swt. dan merupakan nabi serta rasul ke-3.',
+        answer: true,
+        hint: 'Urutan nabi: 1. Nabi Adam a.s., 2. Nabi Idris a.s., 3. Nabi Nuh a.s.',
+        explanation: 'Benar! Nabi Nuh a.s. adalah nabi dan rasul urutan ke-3.'
+      },
+      {
+        id: 'L4',
+        statement: '4. Saat dihina dan diejek kaumnya, Nabi Nuh a.s. membalas mengejek mereka.',
+        answer: false,
+        hint: 'Nabi Nuh a.s. memiliki sikap yang sangat penyabar dan tidak pernah membalas keburukan.',
+        explanation: 'Benar! Pernyataan itu salah karena Nabi Nuh a.s. selalu bersabar dan tidak membalas hinaan.'
+      },
+      {
+        id: 'L5',
+        statement: '5. Rajin belajar setiap hari dan mengerjakan tugas sendiri adalah contoh meneladani kerja keras Nabi Nuh a.s.',
+        answer: true,
+        hint: 'Ingat pepatah Man Jadda Wajada (bersungguh-sungguh). Apakah rajin belajar termasuk kerja keras?',
+        explanation: 'Hebat! Rajin belajar dan mengerjakan tugas sendiri adalah wujud kerja keras seorang pelajar.'
+      }
+    ];
+
+    function renderLatihan() {
+      const container = document.getElementById('latihanContainer');
+      container.innerHTML = latihanQuestions.map(q => `
+        <div id="card-${q.id}" class="bg-white rounded-3xl border-3 border-sky-200 p-5 sm:p-6 shadow-sm space-y-4">
+          <p class="font-bold text-slate-900 text-base sm:text-lg">${q.statement}</p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="checkLatihan('${q.id}', true)" class="btn-touch px-6 py-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-400 text-emerald-950 font-display font-bold flex items-center gap-2">
+              <span>✓</span> Benar
+            </button>
+            <button onclick="checkLatihan('${q.id}', false)" class="btn-touch px-6 py-3 rounded-2xl bg-rose-50 hover:bg-rose-100 border-2 border-rose-400 text-rose-950 font-display font-bold flex items-center gap-2">
+              <span>✗</span> Salah
+            </button>
+          </div>
+          <div id="fb-${q.id}" class="hidden rounded-2xl p-4 font-semibold text-sm sm:text-base"></div>
+        </div>
+      `).join('');
+    }
+
+    function checkLatihan(qId, userChoice) {
+      const q = latihanQuestions.find(item => item.id === qId);
+      const fb = document.getElementById(`fb-${qId}`);
+      fb.classList.remove('hidden');
+
+      if (userChoice === q.answer) {
+        playSound('success');
+        fb.className = 'rounded-2xl p-4 font-bold bg-emerald-100 text-emerald-900 border-2 border-emerald-400 animate-success';
+        fb.innerHTML = `✅ ${q.explanation}`;
+        if (!appState.completedActivities.latihan[qId]) {
+          appState.completedActivities.latihan[qId] = true;
+          addStars(5);
+        }
+      } else {
+        playSound('error');
+        fb.className = 'rounded-2xl p-4 font-bold bg-amber-100 text-amber-950 border-2 border-amber-400 animate-error';
+        fb.innerHTML = `🤔 Belum tepat, ayo coba lagi! <strong>Petunjuk:</strong> ${q.hint}`;
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       10. KUIS AKHIR (10 SOAL PILIHAN GANDA ACAK + TIMER + SKOR OTOMATIS)
+       ----------------------------------------------------------------------- */
+    const masterQuizBank = [
+      {
+        q: 'Nabi Nuh a.s. adalah cicit dari Nabi ....',
+        options: ['Adam a.s.', 'Idris a.s.', 'Hud a.s.'],
+        correctText: 'Idris a.s.',
+        discussion: 'Nabi Nuh a.s. adalah keturunan (cicit) dari Nabi Idris a.s.'
+      },
+      {
+        q: 'Ayah Nabi Nuh a.s. bernama ....',
+        options: ['Lamik', 'Idris', 'Matta'],
+        correctText: 'Lamik',
+        discussion: 'Ayah Nabi Nuh a.s. bernama Lamik, sedangkan putranya bernama Kan\'an.'
+      },
+      {
+        q: 'Nabi Nuh a.s. adalah urutan nabi dan rasul yang ....',
+        options: ['kedua', 'ketiga', 'keempat'],
+        correctText: 'ketiga',
+        discussion: 'Urutan nabi dan rasul: ke-1 Nabi Adam a.s., ke-2 Nabi Idris a.s., dan ke-3 Nabi Nuh a.s.'
+      },
+      {
+        q: 'Kaum Nabi Nuh a.s. banyak yang menyembah ....',
+        options: ['Allah Swt.', 'patung berhala', 'matahari'],
+        correctText: 'patung berhala',
+        discussion: 'Setelah Nabi Idris a.s. wafat, kaum Nabi Nuh a.s. menyembah patung berhala.'
+      },
+      {
+        q: 'Allah Swt. memerintahkan Nabi Nuh a.s. untuk membuat ....',
+        options: ['musala', 'rumah batu', 'kapal besar'],
+        correctText: 'kapal besar',
+        discussion: 'Allah Swt. memerintahkan Nabi Nuh a.s. membuat kapal besar untuk menyelamatkan orang-orang beriman.'
+      },
+      {
+        q: 'Sikap Nabi Nuh a.s. saat diacuhkan dan dihina oleh kaumnya adalah ....',
+        options: ['sabar', 'marah besar', 'putus asa'],
+        correctText: 'sabar',
+        discussion: 'Nabi Nuh a.s. tetap sabar berdakwah selama 950 tahun walau terus dihina.'
+      },
+      {
+        q: 'Nabi Nuh a.s. bersama pengikutnya membuat kapal dengan penuh ....',
+        options: ['keluhan', 'kerja keras', 'tergesa-gesa'],
+        correctText: 'kerja keras',
+        discussion: 'Nabi Nuh a.s. bekerja keras siang dan malam menyelesaikan kapal atas perintah Allah Swt.'
+      },
+      {
+        q: 'Berikut ini adalah contoh meneladani sikap sabar Nabi Nuh a.s. di sekolah, yaitu ....',
+        options: ['Gusti tetap tersenyum meski diejek temannya', 'Raka membalas dorongan temannya', 'Dina menangis saat pensilnya jatuh'],
+        correctText: 'Gusti tetap tersenyum meski diejek temannya',
+        discussion: 'Tidak membalas ejekan dan tetap tenang adalah bukti meneladani kesabaran Nabi Nuh a.s.'
+      },
+      {
+        q: 'Putra Nabi Nuh a.s. yang tidak mau beriman dan ikut tenggelam dalam banjir besar bernama ....',
+        options: ['Kan\'an', 'Sam', 'Lamik'],
+        correctText: 'Kan\'an',
+        discussion: 'Kan\'an menolak ajakan ayahnya (Nabi Nuh a.s.) untuk beriman dan naik ke kapal.'
+      },
+      {
+        q: 'Anak muslim harus bersabar dan bekerja keras agar ....',
+        options: ['disayang Allah Swt. dan cita-cita tercapai', 'dipuji teman-teman saja', 'mendapat hadiah mainan'],
+        correctText: 'disayang Allah Swt. dan cita-cita tercapai',
+        discussion: 'Allah Swt. mencintai orang yang sabar dan bersungguh-sungguh (Man jadda wajada).'
+      }
+    ];
+
+    let activeQuizQuestions = [];
+    let currentQIndex = 0;
+    let quizCorrectCount = 0;
+    let quizAnswered = false;
+    let quizSeconds = 0;
+    let quizTimerInterval = null;
+
+    function startNewQuiz() {
+      // Acak urutan 10 soal & acak opsi jawaban
+      activeQuizQuestions = masterQuizBank
+        .map(item => ({
+          ...item,
+          shuffledOptions: [...item.options].sort(() => Math.random() - 0.5)
+        }))
+        .sort(() => Math.random() - 0.5);
+
+      currentQIndex = 0;
+      quizCorrectCount = 0;
+      quizAnswered = false;
+      quizSeconds = 0;
+
+      if (quizTimerInterval) clearInterval(quizTimerInterval);
+      quizTimerInterval = setInterval(() => {
+        if (appState.currentPage === 'kuis') {
+          quizSeconds++;
+          document.getElementById('quizTimerDisplay').textContent = formatTime(quizSeconds);
+        }
+      }, 1000);
+
+      renderCurrentQuizQuestion();
+    }
+
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function renderCurrentQuizQuestion() {
+      const qObj = activeQuizQuestions[currentQIndex];
+      const total = activeQuizQuestions.length;
+
+      document.getElementById('quizProgressText').textContent = `Soal ${currentQIndex + 1} dari ${total}`;
+      document.getElementById('quizScoreLive').textContent = `Benar: ${quizCorrectCount}`;
+      document.getElementById('quizProgressBar').style.width = `${((currentQIndex + 1) / total) * 100}%`;
+
+      const letters = ['A', 'B', 'C'];
+      const area = document.getElementById('quizQuestionArea');
+
+      area.innerHTML = `
+        <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-5 sm:p-6">
+          <p class="font-display font-bold text-xl sm:text-2xl text-slate-900">
+            ${currentQIndex + 1}. ${qObj.q}
+          </p>
+        </div>
+
+        <div class="space-y-3" id="quizOptionsList">
+          ${qObj.shuffledOptions.map((opt, idx) => `
+            <button onclick="submitQuizAnswer(${idx})" class="quiz-opt-btn btn-touch w-full p-4 rounded-2xl bg-white hover:bg-amber-50 border-2 border-slate-300 text-left font-bold text-slate-900 flex items-center gap-3.5 shadow-sm">
+              <span class="w-10 h-10 rounded-xl bg-sky-100 text-sky-900 font-display font-bold flex items-center justify-center shrink-0">${letters[idx]}</span>
+              <span>${opt}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="quizFeedbackBox" class="hidden rounded-2xl p-4 font-bold"></div>
+
+        <div class="flex justify-end pt-2">
+          <button id="btnNextQuiz" onclick="nextQuizQuestion()" class="hidden btn-touch px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-display font-bold text-lg shadow">
+            ${currentQIndex === total - 1 ? '🏆 Lihat Hasil Akhir' : 'Soal Berikutnya ➡️'}
+          </button>
+        </div>
+      `;
+      quizAnswered = false;
+    }
+
+    function submitQuizAnswer(optIndex) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const qObj = activeQuizQuestions[currentQIndex];
+      const chosenText = qObj.shuffledOptions[optIndex];
+      const isCorrect = chosenText === qObj.correctText;
+
+      const buttons = document.querySelectorAll('.quiz-opt-btn');
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        const btnText = qObj.shuffledOptions[idx];
+        if (btnText === qObj.correctText) {
+          btn.className = 'quiz-opt-btn btn-touch w-full p-4 rounded-2xl bg-emerald-100 border-2 border-emerald-500 text-left font-bold text-emerald-950 flex items-center gap-3.5';
+        } else if (idx === optIndex && !isCorrect) {
+          btn.className = 'quiz-opt-btn btn-touch w-full p-4 rounded-2xl bg-rose-100 border-2 border-rose-500 text-left font-bold text-rose-950 flex items-center gap-3.5';
+        }
+      });
+
+      const fb = document.getElementById('quizFeedbackBox');
+      fb.classList.remove('hidden');
+
+      if (isCorrect) {
+        quizCorrectCount++;
+        playSound('success');
+        fb.className = 'rounded-2xl p-4 font-bold bg-emerald-100 text-emerald-900 border-2 border-emerald-400 animate-success';
+        fb.innerHTML = `✅ Masya Allah, Benar! ${qObj.discussion}`;
+      } else {
+        playSound('error');
+        fb.className = 'rounded-2xl p-4 font-bold bg-rose-100 text-rose-900 border-2 border-rose-400 animate-error';
+        fb.innerHTML = `✗ Kurang tepat. Jawaban yang benar adalah <strong>${qObj.correctText}</strong>. ${qObj.discussion}`;
+      }
+
+      document.getElementById('quizScoreLive').textContent = `Benar: ${quizCorrectCount}`;
+      document.getElementById('btnNextQuiz').classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      if (currentQIndex < activeQuizQuestions.length - 1) {
+        currentQIndex++;
+        renderCurrentQuizQuestion();
+      } else {
+        clearInterval(quizTimerInterval);
+        const finalScore = quizCorrectCount * 10;
+        appState.quizResult = {
+          score: finalScore,
+          correct: quizCorrectCount,
+          wrong: activeQuizQuestions.length - quizCorrectCount,
+          time: formatTime(quizSeconds)
+        };
+        addStars(quizCorrectCount * 3);
+        saveState();
+        navigateTo('hasil');
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+       11. RENDER HALAMAN HASIL BELAJAR & REFLEKSI
+       ----------------------------------------------------------------------- */
+    function renderResultPage() {
+      const name = appState.studentName || 'Anak Saleh';
+      document.getElementById('resultStudentName').textContent = name;
+
+      if (!appState.quizResult) return;
+
+      const { score, correct, wrong, time } = appState.quizResult;
+      document.getElementById('resScoreValue').textContent = score;
+      document.getElementById('resCorrectValue').textContent = `${correct} / 10`;
+      document.getElementById('resWrongValue').textContent = wrong;
+      document.getElementById('resTimeValue').textContent = time;
+
+      const badge = document.getElementById('resultPredicateBadge');
+      const icon = document.getElementById('resultBadgeIcon');
+      const msg = document.getElementById('resultMotivationMsg');
+
+      if (score >= 80) {
+        icon.textContent = '🏆';
+        badge.textContent = 'Luar Biasa! Bintang Teladan Nabi Nuh a.s.';
+        msg.textContent = `Alhamdulillah ${name}, pemahamanmu tentang kisah dan keteladanan Nabi Nuh a.s. sangat hebat! Teruslah bersabar dan bekerja keras.`;
+      } else if (score >= 60) {
+        icon.textContent = '🌟';
+        badge.textContent = 'Hebat! Terus Tingkatkan Semangatmu';
+        msg.textContent = `Bagus sekali ${name}! Kamu sudah memahami sebagian besar kisah Nabi Nuh a.s. Yuk baca ulang bagian materi yang masih keliru agar nilaimu 100!`;
+      } else {
+        icon.textContent = '💪';
+        badge.textContent = 'Tetap Semangat & Terus Berlatih!';
+        msg.textContent = `Jangan berkecil hati ya ${name}! Seperti Nabi Nuh a.s. yang sabar dan bekerja keras, ayo buka kembali halaman Materi lalu coba kuisnya lagi!`;
+      }
+    }
+
+    const habitList = [
+      '1. Aku sabar dalam belajar dan mengerjakan tugas.',
+      '2. Aku sabar ketika menghadapi musibah atau kesulitan.',
+      '3. Aku sabar dalam beribadah (salat dan mengaji).',
+      '4. Aku suka bekerja keras untuk meraih cita-cita.',
+      '5. Aku tidak suka bermalas-malasan.'
+    ];
+
+    function renderHabitTable() {
+      const tbody = document.getElementById('habitTableBody');
+      tbody.innerHTML = habitList.map((text, idx) => `
+        <tr>
+          <td class="p-3.5 text-slate-900">${text}</td>
+          <td class="p-3 text-center">
+            <input type="radio" name="habit_${idx}" value="Selalu" class="w-6 h-6 accent-teal-600 cursor-pointer" onchange="saveHabit(${idx}, 'Selalu')">
+          </td>
+          <td class="p-3 text-center">
+            <input type="radio" name="habit_${idx}" value="Sering" class="w-6 h-6 accent-sky-600 cursor-pointer" onchange="saveHabit(${idx}, 'Sering')">
+          </td>
+          <td class="p-3 text-center">
+            <input type="radio" name="habit_${idx}" value="Belajar Lagi" class="w-6 h-6 accent-amber-600 cursor-pointer" onchange="saveHabit(${idx}, 'Belajar Lagi')">
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function saveHabit(idx, val) {
+      playSound('click');
+      appState.reflection.habits[idx] = val;
+      saveState();
+    }
+
+    function selectMood(moodText) {
+      playSound('click');
+      appState.reflection.mood = moodText;
+      document.querySelectorAll('.mood-btn').forEach(btn => {
+        if (btn.textContent.includes(moodText.split(' ')[0])) {
+          btn.className = 'mood-btn btn-touch px-4 py-2.5 rounded-2xl bg-amber-300 border-2 border-amber-600 font-bold text-slate-950 shadow-sm';
+        } else {
+          btn.className = 'mood-btn btn-touch px-4 py-2.5 rounded-2xl bg-white border-2 border-amber-300 font-bold text-slate-800';
+        }
+      });
+      saveState();
+    }
+
+    function submitReflection() {
+      const fav = document.getElementById('favPartSelect').value;
+      const note = document.getElementById('reflectionNote').value.trim();
+      appState.reflection.favPart = fav;
+      appState.reflection.note = note;
+      addStars(10);
+      saveState();
+
+      const name = appState.studentName || 'Anak Saleh';
+      document.getElementById('closingPersonalText').innerHTML = `
+        Terima kasih <strong>${name}</strong> sudah belajar dengan penuh semangat! Kamu menyukai bagian <em>"${fav}"</em>. 
+        Semoga Allah Swt. menjadikanmu anak yang selalu <strong>sabar</strong> dan <strong>bekerja keras</strong> seperti Nabi Nuh a.s. (+10 Bintang Refleksi!)
+      `;
+      const card = document.getElementById('closingMotivationCard');
+      card.classList.remove('hidden');
+      card.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetAllProgress() {
+      localStorage.removeItem(STORAGE_KEY);
+      appState = {
+        studentName: '',
+        stars: 0,
+        soundEnabled: true,
+        fidMode: appState.fidMode,
+        currentPage: 'beranda',
+        currentMateriTab: 0,
+        completedActivities: { storyOrder: false, matching: false, tts: false, ark: false, latihan: {} },
+        quizResult: null,
+        reflection: { habits: {}, mood: '', favPart: '', note: '' }
+      };
+      document.getElementById('studentNameInput').value = '';
+      document.getElementById('closingMotivationCard').classList.add('hidden');
+      updateStarDisplay();
+      resetStoryCards();
+      initMatchingGame();
+      renderTTSGrid();
+      renderLatihan();
+      startNewQuiz();
+      renderHabitTable();
+      showModal('🔄', 'Media Diatur Ulang', 'Semua progres dan bintang telah diatur ulang. Selamat belajar kembali dari awal!');
+      navigateTo('beranda');
+    }
+
+    /* -----------------------------------------------------------------------
+       12. INISIALISASI SAAT HALAMAN DIMUAT
+       ----------------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      selectMateriTab(0);
+      resetStoryCards();
+      initMatchingGame();
+      renderTTSGrid();
+      renderLatihan();
+      startNewQuiz();
+      renderHabitTable();
+    });
+  </script>
+</body>
+</html>
